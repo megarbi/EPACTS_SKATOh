@@ -26,7 +26,7 @@ ENV PATH=/usr/local/bin:$PATH
 
 #RUN git clone https://github.com/statgen/EPACTS.git
 RUN git clone https://github.com/ClaudioCappadona/EPACTS_SKATOh.git
-WORKDIR EPACTS
+WORKDIR EPACTS_SKATOh
 RUN autoreconf -vfi
 RUN CC="gcc-5" CXX="g++-5" ./configure --prefix /home/epacts
 RUN make -j 1
