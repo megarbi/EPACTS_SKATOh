@@ -181,7 +181,8 @@ unless ( ( $vcf ) && ($test) && ($ped) && ($groupf) && ( $out ) ) {
 ## By default, select nsSNP, splci
 
 my $dir = (&getcwd());
-my $epactsdir = dirname($FindBin::Bin);
+#my $epactsdir = dirname($FindBin::Bin);
+my $epactsdir = "/usr/local/";
 #$epactsdir =~ s/\/[^\/]+$//;
 my $datadir = "$epactsdir/share/EPACTS";
 $out = "$dir/$out" unless ( $out =~ /^\// );
