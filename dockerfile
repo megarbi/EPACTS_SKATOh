@@ -30,8 +30,14 @@ RUN ln -s /usr/bin/g++-5 /usr/local/bin/g++
 ENV PATH=/usr/local/bin:$PATH
 
 #RUN git clone https://github.com/statgen/EPACTS.git
-RUN git clone https://github.com/ClaudioCappadona/EPACTS_SKATOh.git
-WORKDIR EPACTS_SKATOh
+#RUN git clone https://github.com/ClaudioCappadona/EPACTS_SKATOh.git
+
+#RUN cp -r ./src usr/src && cp -r ./data usr/data /usr/local/share/EPACTS && cp -r ./scripts usr/local/bin
+
+COPY ./ /EPACTS_SKATOh
+
+#WORKDIR ./
+WORKDIR /EPACTS_SKATOh
 
 RUN autoreconf -vfi
 #RUN CC="gcc-5" CXX="g++-5" ./configure --prefix /home/epacts
