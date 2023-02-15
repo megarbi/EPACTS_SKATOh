@@ -1,0 +1,10 @@
+services:
+    app:
+        build: .
+        container_name: fastapi
+        command: bash /home/asselta/ccappadona/esomi_project_backedup/rare_var_analysis/scripts/epacts_launcher_for_test.sh
+        ports:
+            - 8034:8034
+        volumes:
+            - /home/asselta:/home/asselta:Z
+            - /mnt/backup/asselta/ccappadona/:/mnt/backup/asselta/ccappadona/
