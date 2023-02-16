@@ -39,6 +39,8 @@ COPY ./ /EPACTS_SKATOh
 #WORKDIR ./
 WORKDIR /EPACTS_SKATOh
 
+RUN R CMD INSTALL /EPACTS_SKATOh/src/CompQuadForm_1.4.3.tar.gz && R CMD INSTALL /EPACTS_SKATOh/src/SKAT_2.2.5.tar.gz
+
 RUN autoreconf -vfi
 #RUN CC="gcc-5" CXX="g++-5" ./configure --prefix /home/epacts
 RUN CC="gcc-5" CXX="g++-5" ./configure --prefix /usr/local
