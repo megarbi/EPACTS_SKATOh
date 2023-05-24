@@ -1,24 +1,28 @@
 ############################################################
 # Dockerfile to build EPACTS
 
+#FROM ubuntu:20.04
 FROM ubuntu:18.04
 
 USER root
 
-RUN apt-get update && apt-get install -y build-essential apt-utils gnuplot5 git zlib1g-dev ghostscript groff vim
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
-RUN dpkg-reconfigure --frontend noninteractive tzdata
+RUN apt-get update && apt-get install -y build-essential apt-utils gnuplot git zlib1g-dev ghostscript groff vim libreadline-dev
+#RUN apt-get update && apt-get install -y build-essential apt-utils gnuplot5 git zlib1g-dev ghostscript groff vim libreadline-dev
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata software-properties-common gfortran
+RUN dpkg-reconfigure --frontend noninteractive tzdata 
 
-RUN apt-get update && apt-get install -y gcc-5 g++-5 automake libtool
+RUN apt-get update && apt-get install -y gcc g++ automake libtool
+#RUN apt-get update && apt-get install -y gcc-5 g++-5 automake libtool 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    r-base-core \
+	r-base-core \
     r-recommended \
- 	r-base \
+    r-base \
  	wget \
 	libbz2-dev \
 	liblzma-dev \
 	curl
 
+RUN R -e 'install.packages("SKAT")'
 RUN cd /usr/local/bin && curl https://getmic.ro | bash
 #RUN apt-get update && apt-get install -y libtool && 
 
@@ -39,7 +43,8 @@ COPY ./ /EPACTS_SKATOh
 #WORKDIR ./
 WORKDIR /EPACTS_SKATOh
 
-RUN R CMD INSTALL /EPACTS_SKATOh/src/CompQuadForm_1.4.3.tar.gz && R CMD INSTALL /EPACTS_SKATOh/src/SKAT_2.2.5.tar.gz
+#RUN R CMD INSTALL /EPACTS_SKATOh/src/CompQuadForm_1.4.3.tar.gz 
+#&& R CMD INSTALL /EPACTS_SKATOh/src/SKAT_2.2.5.tar.gz
 
 RUN autoreconf -vfi
 #RUN CC="gcc-5" CXX="g++-5" ./configure --prefix /home/epacts

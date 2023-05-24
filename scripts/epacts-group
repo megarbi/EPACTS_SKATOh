@@ -374,7 +374,8 @@ else {
 	    print R "minAF <- $minMAF\n";
 	    print R "maxAF <- $maxMAF\n";
 	    print R "minAC <- $minMAC\n";
-	    print R "test <- 'group.$test'\n";
+	   # print R "test <- 'group.$test'\n";
+	    print R "test <- 'group.${test}'\n";#MYMOD#
 	    print R "flip <- TRUE\n";
 	    print R "sepchr <- ".($sepchr ? "TRUE" : "FALSE")."\n";
 	    print R "gnames <- c(";
@@ -409,6 +410,7 @@ else {
 	    print R "betas <- c($betaA,$betaB)\n";
 	    print R "skatFlat <- ".($skatFlat ? "TRUE" : "FALSE")."\n";
 	    print R "skatOptimal <- ".($skatOptimal ? "TRUE" : "FALSE")."\n";
+	    print R "skatoh <- ".($skatoh ? "TRUE" : "FALSE")."\n";#MYMOD
 	    print R "skatAdjust <- ".($skatAdjust ? "TRUE" : "FALSE")."\n";
 	    print R "binaryFlag <- ".($binaryFlag ? "TRUE" : "FALSE")."\n";
 	    print R "setwd('$datadir')\n";

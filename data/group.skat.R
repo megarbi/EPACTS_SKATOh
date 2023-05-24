@@ -15,8 +15,8 @@
 ##################################################################
 
 ## check the installation of SKAT package
-if ( !require(mmSKAT,lib.loc=paste(bindir,"/lib/",sep="") ) ) {
-  stop("Cannot find mmSKAT package");
+#if ( !require(mmSKAT,lib.loc=paste(bindir,"/lib/",sep="") ) ) {
+#  stop("Cannot find mmSKAT package");
 #  if ( batch == 0 ) { # install for the first time
 #    install.packages('SKAT_0.77.tar.gz');
 #    if(!require(SKAT)) { stop("Package SKAT is not found") }
@@ -33,7 +33,8 @@ if ( !require(mmSKAT,lib.loc=paste(bindir,"/lib/",sep="") ) ) {
 #  }
 }
 
-library(mmSKAT)
+#library(mmSKAT)
+library(SKAT)
 
 ## group.q.skat() : SKAT implementation
 ## KEY FEATURES : 0/1 collapsing variable ~ rare variants
@@ -48,7 +49,8 @@ library(mmSKAT)
 group.skat <- function() {
   #library(SKAT)
   #print(packageDescription("SKAT"))
-  if ( skatOptimal ) {
+  #if ( skatOptimal ) {
+  if ( skatOptimal | skatoh ) {
     cname <- c("STATRHO");
   }
   else {

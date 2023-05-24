@@ -1,0 +1,50 @@
+''############################################################
+# Dockerfile to build EPACTS
+
+FROM ubuntu:18.04
+USER root
+
+RUN apt-get update && apt-get install -y build-essential apt-utils wget gcc-5 g++-5 automake gfortran
+RUN apt-get update && apt-get install -y zlib1g-dev bzip2 libbz2-dev liblzma-dev libcurl4-openssl-dev default-jre
+
+WORKDIR /usr/lib
+RUN wget https://ftp.exim.org/pub/pcre/pcre2-10.37.tar.gz && tar -xzvf pcre2-10.37.tar.gz
+
+WORKDIR /usr/lib/pcre2-10.37
+RUN ./configure
+RUN make -j 1
+RUN make install
+
+WORKDIR /usr/lib
+RUN wget https://cran.r-project.org/src/base/R-4/R-4.2.0.tar.gz && tar -xzvf R-4.2.0.tar.gz
+
+WORKDIR /usr/lib/R-4.2.0
+RUN ./configure --with-readline=no --with-x=no
+RUN make -j 1
+RUN make install
+
+RUN apt-get update && apt-get install -y gnuplot5 git ghostscript groff vim libtool
+
+RUN mkdir /home/epacts && chmod 777 /home/epacts
+
+RUN ln -s /usr/bin/gcc-5 /usr/local/bin/gcc
+RUN ln -s /usr/bin/g++-5 /usr/local/bin/g++
+
+ENV PATH=/usr/local/bin:$PATH
+
+#RUN git clone https://github.com/statgen/EPACTS.git
+
+RUN cp -r ./ /EPACTS_SKATOh
+#WORKDIR EPACTS
+WORKDIR /EPACTS_SKATOh
+
+RUN autoreconf -vfi
+RUN CC="gcc-5" CXX="g++-5" ./configure --prefix /home/epacts
+RUN make -j 1
+RUN make -j 1 install
+
+ENV EPACTS_DIR=/home/epacts
+
+
+#RUN R -e 'install.packages("SKAT", repos = "https://cran.r-project.org")'
+#RUN R CMD INSTALL /path/to/CompQuadForm_1.4.3.tar.gz

@@ -1,0 +1,100 @@
+Sending build context to Docker daemon  428.4MB
+Step 1/28 : FROM ubuntu:18.04
+ ---> 5d2df19066ac
+Step 2/28 : USER root
+ ---> Using cache
+ ---> 4cd684ad73e5
+Step 3/28 : RUN apt-get update && apt-get install -y build-essential apt-utils wget gcc-5 g++-5 automake gfortran
+ ---> Using cache
+ ---> 2e23d483543b
+Step 4/28 : RUN apt-get update && apt-get install -y zlib1g-dev bzip2 libbz2-dev liblzma-dev libcurl4-openssl-dev default-jre
+ ---> Using cache
+ ---> d55180f166c5
+Step 5/28 : WORKDIR /usr/lib
+ ---> Using cache
+ ---> 9e6b2dd0dd86
+Step 6/28 : RUN wget https://ftp.exim.org/pub/pcre/pcre2-10.37.tar.gz && tar -xzvf pcre2-10.37.tar.gz
+ ---> Using cache
+ ---> 31642b39d143
+Step 7/28 : WORKDIR /usr/lib/pcre2-10.37
+ ---> Using cache
+ ---> a0c0d8bdb44a
+Step 8/28 : RUN ./configure
+ ---> Using cache
+ ---> 11a83b9c7e32
+Step 9/28 : RUN make -j 1
+ ---> Using cache
+ ---> 75a8d00bb67a
+Step 10/28 : RUN make install
+ ---> Using cache
+ ---> c8365d1516b8
+Step 11/28 : WORKDIR /usr/lib
+ ---> Using cache
+ ---> cb81bc1ff58e
+Step 12/28 : RUN wget https://cran.r-project.org/src/base/R-4/R-4.2.0.tar.gz && tar -xzvf R-4.2.0.tar.gz
+ ---> Using cache
+ ---> 0b8cb6f54c2c
+Step 13/28 : WORKDIR /usr/lib/R-4.2.0
+ ---> Using cache
+ ---> 99d84c5595f8
+Step 14/28 : RUN ./configure --with-readline=no --with-x=no
+ ---> Using cache
+ ---> 1bb93935bcac
+Step 15/28 : RUN make -j 1
+ ---> Using cache
+ ---> ac59ea549171
+Step 16/28 : RUN make install
+ ---> Using cache
+ ---> 6a3338bd7605
+Step 17/28 : RUN apt-get update && apt-get install -y gnuplot5 git ghostscript groff vim libtool
+ ---> Using cache
+ ---> 5fd8302e5b1b
+Step 18/28 : RUN mkdir /home/epacts && chmod 777 /home/epacts
+ ---> Using cache
+ ---> b6b1c1a8228f
+Step 19/28 : RUN ln -s /usr/bin/gcc-5 /usr/local/bin/gcc
+ ---> Using cache
+ ---> 2a95b49d7b52
+Step 20/28 : RUN ln -s /usr/bin/g++-5 /usr/local/bin/g++
+ ---> Using cache
+ ---> b7c9902c3804
+Step 21/28 : ENV PATH=/usr/local/bin:$PATH
+ ---> Using cache
+ ---> 3a4ebfffd814
+Step 22/28 : RUN cp -r ./ /EPACTS_SKATOh
+ ---> Running in 89474ffbba78
+Removing intermediate container 89474ffbba78
+ ---> 54f5c4309485
+Step 23/28 : WORKDIR /EPACTS_SKATOh
+ ---> Running in d88197f2378e
+Removing intermediate container d88197f2378e
+ ---> 80f5c5b76243
+Step 24/28 : RUN autoreconf -vfi
+ ---> Running in ece4280515fe
+[91mautoreconf: Entering directory `.'
+[0m[91mautoreconf: configure.ac: not using Gettext
+[0m[91mautoreconf: running: aclocal --force 
+[0m[91mconfigure.ac:1751: warning: macro 'AM_LANGINFO_CODESET' not found in library
+[0m[91mconfigure.ac:2293: warning: macro 'AM_NLS' not found in library
+configure.ac:2297: warning: macro 'AM_GNU_GETTEXT_VERSION' not found in library
+configure.ac:2298: warning: macro 'AM_GNU_GETTEXT' not found in library
+[0m[91mautoreconf: configure.ac: tracing
+[0m[91mautoreconf: running: libtoolize --copy --force
+[0mlibtoolize: putting auxiliary files in AC_CONFIG_AUX_DIR, 'tools'.
+libtoolize: copying file 'tools/ltmain.sh'
+libtoolize: Consider adding 'AC_CONFIG_MACRO_DIRS([m4])' to configure.ac,
+libtoolize: and rerunning libtoolize and aclocal.
+libtoolize: Consider adding '-I m4' to ACLOCAL_AMFLAGS in Makefile.am.
+[91mconfigure.ac:1751: warning: macro 'AM_LANGINFO_CODESET' not found in library
+[0m[91mconfigure.ac:2293: warning: macro 'AM_NLS' not found in library
+configure.ac:2297: warning: macro 'AM_GNU_GETTEXT_VERSION' not found in library
+configure.ac:2298: warning: macro 'AM_GNU_GETTEXT' not found in library
+[0m[91mautoreconf: running: /usr/bin/autoconf --force
+[0m[91mconfigure.ac:2111: error: possibly undefined macro: AM_LANGINFO_CODESET
+      If this token and others are legitimate, please use m4_pattern_allow.
+      See the Autoconf documentation.
+[0m[91mconfigure.ac:2743: error: possibly undefined macro: AM_NLS
+configure.ac:2747: error: possibly undefined macro: AM_GNU_GETTEXT_VERSION
+configure.ac:2748: error: possibly undefined macro: AM_GNU_GETTEXT
+[0m[91mautoreconf: /usr/bin/autoconf failed with exit status: 1
+[0m
