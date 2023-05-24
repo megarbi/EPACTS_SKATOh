@@ -1,4 +1,4 @@
-''############################################################
+############################################################
 # Dockerfile to build EPACTS
 
 FROM ubuntu:18.04
@@ -32,9 +32,10 @@ RUN ln -s /usr/bin/g++-5 /usr/local/bin/g++
 
 ENV PATH=/usr/local/bin:$PATH
 
+WORKDIR /
 #RUN git clone https://github.com/statgen/EPACTS.git
+RUN git clone https://github.com/ClaudioCappadona/EPACTS_SKATOh.git --single-branch --branch SKATOh_test
 
-RUN cp -r ./ /EPACTS_SKATOh
 #WORKDIR EPACTS
 WORKDIR /EPACTS_SKATOh
 
@@ -45,6 +46,10 @@ RUN make -j 1 install
 
 ENV EPACTS_DIR=/home/epacts
 
+#RUN apt-get install -y gfortran
+RUN ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.4 /usr/lib/x86_64-linux-gnu/libgfortran.so
 
-#RUN R -e 'install.packages("SKAT", repos = "https://cran.r-project.org")'
+RUN R CMD INSTALL /EPACTS_SKATOh/data/RcppEigen_0.3.3.9.3.tar.gz
+
+RUN R -e 'install.packages("SKAT", repos = "https://cran.r-project.org")'
 #RUN R CMD INSTALL /path/to/CompQuadForm_1.4.3.tar.gz
