@@ -33,6 +33,7 @@ RUN ln -s /usr/bin/g++-5 /usr/local/bin/g++
 ENV PATH=/usr/local/bin:$PATH
 
 WORKDIR /
+WORKDIR /
 #RUN git clone https://github.com/statgen/EPACTS.git
 RUN git clone https://github.com/ClaudioCappadona/EPACTS_SKATOh.git --single-branch --branch SKATOh_test
 
@@ -49,7 +50,11 @@ ENV EPACTS_DIR=/home/epacts
 #RUN apt-get install -y gfortran
 RUN ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.4 /usr/lib/x86_64-linux-gnu/libgfortran.so
 
-RUN R CMD INSTALL /EPACTS_SKATOh/data/RcppEigen_0.3.3.9.3.tar.gz
+WORKDIR /EPACTS_SKATOh/data
+
+RUN R CMD INSTALL Rcpp_1.0.10.tar.gz
+RUN R CMD INSTALL RcppEigen_0.3.3.9.3.tar.gz
+RUN R CMD INSTALL RSpectra_0.16-1.tar.gz
 
 RUN R -e 'install.packages("SKAT", repos = "https://cran.r-project.org")'
 #RUN R CMD INSTALL /path/to/CompQuadForm_1.4.3.tar.gz
