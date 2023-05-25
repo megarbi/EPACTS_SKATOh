@@ -1,444 +1,127 @@
 Sending build context to Docker daemon  480.2MB
-Step 1/34 : FROM ubuntu:18.04
+Step 1/37 : FROM ubuntu:18.04
  ---> 5d2df19066ac
-Step 2/34 : USER root
+Step 2/37 : USER root
  ---> Using cache
  ---> 4cd684ad73e5
-Step 3/34 : RUN apt-get update && apt-get install -y build-essential apt-utils wget gcc-5 g++-5 automake gfortran
+Step 3/37 : RUN apt-get update && apt-get install -y build-essential apt-utils wget gcc-5 g++-5 automake gfortran
  ---> Using cache
  ---> 2e23d483543b
-Step 4/34 : RUN apt-get update && apt-get install -y zlib1g-dev bzip2 libbz2-dev liblzma-dev libcurl4-openssl-dev default-jre
+Step 4/37 : RUN apt-get update && apt-get install -y zlib1g-dev bzip2 libbz2-dev liblzma-dev libcurl4-openssl-dev default-jre
  ---> Using cache
  ---> d55180f166c5
-Step 5/34 : WORKDIR /usr/lib
+Step 5/37 : WORKDIR /usr/lib
  ---> Using cache
  ---> 9e6b2dd0dd86
-Step 6/34 : RUN wget https://ftp.exim.org/pub/pcre/pcre2-10.37.tar.gz && tar -xzvf pcre2-10.37.tar.gz
+Step 6/37 : RUN wget https://ftp.exim.org/pub/pcre/pcre2-10.37.tar.gz && tar -xzvf pcre2-10.37.tar.gz
  ---> Using cache
  ---> 31642b39d143
-Step 7/34 : WORKDIR /usr/lib/pcre2-10.37
+Step 7/37 : WORKDIR /usr/lib/pcre2-10.37
  ---> Using cache
  ---> a0c0d8bdb44a
-Step 8/34 : RUN ./configure
+Step 8/37 : RUN ./configure
  ---> Using cache
  ---> 11a83b9c7e32
-Step 9/34 : RUN make -j 1
+Step 9/37 : RUN make -j 1
  ---> Using cache
  ---> 75a8d00bb67a
-Step 10/34 : RUN make install
+Step 10/37 : RUN make install
  ---> Using cache
  ---> c8365d1516b8
-Step 11/34 : WORKDIR /usr/lib
+Step 11/37 : WORKDIR /usr/lib
  ---> Using cache
  ---> cb81bc1ff58e
-Step 12/34 : RUN wget https://cran.r-project.org/src/base/R-4/R-4.2.0.tar.gz && tar -xzvf R-4.2.0.tar.gz
+Step 12/37 : RUN wget https://cran.r-project.org/src/base/R-4/R-4.2.0.tar.gz && tar -xzvf R-4.2.0.tar.gz
  ---> Using cache
  ---> 0b8cb6f54c2c
-Step 13/34 : WORKDIR /usr/lib/R-4.2.0
+Step 13/37 : WORKDIR /usr/lib/R-4.2.0
  ---> Using cache
  ---> 99d84c5595f8
-Step 14/34 : RUN ./configure --with-readline=no --with-x=no
+Step 14/37 : RUN ./configure --with-readline=no --with-x=no
  ---> Using cache
  ---> 1bb93935bcac
-Step 15/34 : RUN make -j 1
+Step 15/37 : RUN make -j 1
  ---> Using cache
  ---> ac59ea549171
-Step 16/34 : RUN make install
+Step 16/37 : RUN make install
  ---> Using cache
  ---> 6a3338bd7605
-Step 17/34 : RUN apt-get update && apt-get install -y gnuplot5 git ghostscript groff vim libtool
+Step 17/37 : RUN apt-get update && apt-get install -y gnuplot5 git ghostscript groff vim libtool
  ---> Using cache
  ---> 5fd8302e5b1b
-Step 18/34 : RUN mkdir /home/epacts && chmod 777 /home/epacts
+Step 18/37 : RUN mkdir /home/epacts && chmod 777 /home/epacts
  ---> Using cache
  ---> b6b1c1a8228f
-Step 19/34 : RUN ln -s /usr/bin/gcc-5 /usr/local/bin/gcc
+Step 19/37 : RUN ln -s /usr/bin/gcc-5 /usr/local/bin/gcc
  ---> Using cache
  ---> 2a95b49d7b52
-Step 20/34 : RUN ln -s /usr/bin/g++-5 /usr/local/bin/g++
+Step 20/37 : RUN ln -s /usr/bin/g++-5 /usr/local/bin/g++
  ---> Using cache
  ---> b7c9902c3804
-Step 21/34 : ENV PATH=/usr/local/bin:$PATH
+Step 21/37 : ENV PATH=/usr/local/bin:$PATH
  ---> Using cache
  ---> 3a4ebfffd814
-Step 22/34 : WORKDIR /
+Step 22/37 : WORKDIR /
  ---> Using cache
  ---> 36097d9f65ec
-Step 23/34 : WORKDIR /
- ---> Running in f1b97025158c
-Removing intermediate container f1b97025158c
- ---> 7495d4f57e02
-Step 24/34 : RUN git clone https://github.com/ClaudioCappadona/EPACTS_SKATOh.git --single-branch --branch SKATOh_test
- ---> Running in f964146787c7
-[91mCloning into 'EPACTS_SKATOh'...
-[0mRemoving intermediate container f964146787c7
- ---> f38adcd84d02
-Step 25/34 : WORKDIR /EPACTS_SKATOh
- ---> Running in 97a828cf8199
-Removing intermediate container 97a828cf8199
- ---> 28825c60a7c6
-Step 26/34 : RUN autoreconf -vfi
- ---> Running in 232cfea6b503
-[91mautoreconf: Entering directory `.'
-[0m[91mautoreconf: configure.ac: not using Gettext
-[0m[91mautoreconf: running: aclocal --force -I m4 ${ACLOCAL_FLAGS}
-[0m[91mautoreconf: configure.ac: tracing
-[0m[91mautoreconf: running: libtoolize --copy --force
-[0mlibtoolize: putting auxiliary files in '.'.
-libtoolize: copying file './ltmain.sh'
-libtoolize: putting macros in AC_CONFIG_MACRO_DIRS, 'm4'.
-libtoolize: copying file 'm4/libtool.m4'
-libtoolize: copying file 'm4/ltoptions.m4'
-libtoolize: copying file 'm4/ltsugar.m4'
-libtoolize: copying file 'm4/ltversion.m4'
-libtoolize: copying file 'm4/lt~obsolete.m4'
-[91mautoreconf: running: /usr/bin/autoconf --force
-[0m[91mautoreconf: running: /usr/bin/autoheader --force
-[0m[91mautoreconf: running: automake --add-missing --copy --force-missing
-[0m[91mconfigure.ac:6: warning: AM_INIT_AUTOMAKE: two- and three-arguments forms are deprecated.  For more info, see:
-configure.ac:6: http://www.gnu.org/software/automake/manual/automake.html#Modernize-AM_005fINIT_005fAUTOMAKE-invocation
-[0m[91mconfigure.ac:11: installing './compile'
-[0m[91mconfigure.ac:6: installing './missing'
-[0m[91msrc/Makefile.am: installing './depcomp'
-[0m[91mautoreconf: Leaving directory `.'
-[0mRemoving intermediate container 232cfea6b503
- ---> 40e67c995783
-Step 27/34 : RUN CC="gcc-5" CXX="g++-5" ./configure --prefix /home/epacts
- ---> Running in f89dc061bc37
-checking for a BSD-compatible install... /usr/bin/install -c
-checking whether build environment is sane... yes
-checking for a thread-safe mkdir -p... /bin/mkdir -p
-checking for gawk... no
-checking for mawk... mawk
-checking whether make sets $(MAKE)... yes
-checking whether make supports nested variables... yes
-checking build system type... x86_64-pc-linux-gnu
-checking host system type... x86_64-pc-linux-gnu
-checking how to print strings... printf
-checking for style of include used by make... GNU
-checking for gcc... gcc-5
-checking whether the C compiler works... yes
-checking for C compiler default output file name... a.out
-checking for suffix of executables... 
-checking whether we are cross compiling... no
-checking for suffix of object files... o
-checking whether we are using the GNU C compiler... yes
-checking whether gcc-5 accepts -g... yes
-checking for gcc-5 option to accept ISO C89... none needed
-checking whether gcc-5 understands -c and -o together... yes
-checking dependency style of gcc-5... gcc3
-checking for a sed that does not truncate output... /bin/sed
-checking for grep that handles long lines and -e... /bin/grep
-checking for egrep... /bin/grep -E
-checking for fgrep... /bin/grep -F
-checking for ld used by gcc-5... /usr/bin/ld
-checking if the linker (/usr/bin/ld) is GNU ld... yes
-checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
-checking the name lister (/usr/bin/nm -B) interface... BSD nm
-checking whether ln -s works... yes
-checking the maximum length of command line arguments... 1572864
-checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format... func_convert_file_noop
-checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
-checking for /usr/bin/ld option to reload object files... -r
-checking for objdump... objdump
-checking how to recognize dependent libraries... pass_all
-checking for dlltool... no
-checking how to associate runtime and link libraries... printf %s\n
-checking for ar... ar
-checking for archiver @FILE support... @
-checking for strip... strip
-checking for ranlib... ranlib
-checking command to parse /usr/bin/nm -B output from gcc-5 object... ok
-checking for sysroot... no
-checking for a working dd... /bin/dd
-checking how to truncate binary pipes... /bin/dd bs=4096 count=1
-checking for mt... no
-checking if : is a manifest tool... no
-checking how to run the C preprocessor... gcc-5 -E
-checking for ANSI C header files... yes
-checking for sys/types.h... yes
-checking for sys/stat.h... yes
-checking for stdlib.h... yes
-checking for string.h... yes
-checking for memory.h... yes
-checking for strings.h... yes
-checking for inttypes.h... yes
-checking for stdint.h... yes
-checking for unistd.h... yes
-checking for dlfcn.h... yes
-checking for objdir... .libs
-checking if gcc-5 supports -fno-rtti -fno-exceptions... no
-checking for gcc-5 option to produce PIC... -fPIC -DPIC
-checking if gcc-5 PIC flag -fPIC -DPIC works... yes
-checking if gcc-5 static flag -static works... yes
-checking if gcc-5 supports -c -o file.o... yes
-checking if gcc-5 supports -c -o file.o... (cached) yes
-checking whether the gcc-5 linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
-checking whether -lc should be explicitly linked in... no
-checking dynamic linker characteristics... GNU/Linux ld.so
-checking how to hardcode library paths into programs... immediate
-checking whether stripping libraries is possible... yes
-checking if libtool supports shared libraries... yes
-checking whether to build shared libraries... yes
-checking whether to build static libraries... yes
-checking whether we are using the GNU C++ compiler... yes
-checking whether g++-5 accepts -g... yes
-checking dependency style of g++-5... gcc3
-checking how to run the C++ preprocessor... g++-5 -E
-checking for ld used by g++-5... /usr/bin/ld -m elf_x86_64
-checking if the linker (/usr/bin/ld -m elf_x86_64) is GNU ld... yes
-checking whether the g++-5 linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
-checking for g++-5 option to produce PIC... -fPIC -DPIC
-checking if g++-5 PIC flag -fPIC -DPIC works... yes
-checking if g++-5 static flag -static works... yes
-checking if g++-5 supports -c -o file.o... yes
-checking if g++-5 supports -c -o file.o... (cached) yes
-checking whether the g++-5 linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
-checking dynamic linker characteristics... (cached) GNU/Linux ld.so
-checking how to hardcode library paths into programs... immediate
-checking for gcc... (cached) gcc-5
-checking whether we are using the GNU C compiler... (cached) yes
-checking whether gcc-5 accepts -g... (cached) yes
-checking for gcc-5 option to accept ISO C89... (cached) none needed
-checking whether gcc-5 understands -c and -o together... (cached) yes
-checking dependency style of gcc-5... (cached) gcc3
-checking limits.h usability... yes
-checking limits.h presence... yes
-checking for limits.h... yes
-checking stddef.h usability... yes
-checking stddef.h presence... yes
-checking for stddef.h... yes
-checking for stdint.h... (cached) yes
-checking for stdlib.h... (cached) yes
-checking for string.h... (cached) yes
-checking for unistd.h... (cached) yes
-checking for stdbool.h that conforms to C99... yes
-checking for _Bool... yes
-checking for inline... inline
-checking for int32_t... yes
-checking for int64_t... yes
-checking for C/C++ restrict keyword... __restrict
-checking for size_t... yes
-checking for uint16_t... yes
-checking for uint32_t... yes
-checking for uint64_t... yes
-checking for uint8_t... yes
-checking for ptrdiff_t... yes
-checking for error_at_line... yes
-checking for stdlib.h... (cached) yes
-checking for GNU libc compatible malloc... yes
-checking whether sys/types.h defines makedev... yes
-checking for stdlib.h... (cached) yes
-checking for GNU libc compatible realloc... yes
-checking for working strtod... yes
-checking for floor... no
-checking for gethostname... yes
-checking for memset... yes
-checking for pow... no
-checking for select... yes
-checking for sqrt... no
-checking for strchr... yes
-checking for strstr... yes
-checking for strtol... yes
-checking for gzopen in -lz... yes
-checking for perl... yes
-checking for gs... yes
-checking for Rscript... yes
-checking for R... yes
-checking for grep... yes
-checking for mv... yes
-checking for rm... yes
-checking for make... yes
-checking for cat... yes
-checking for cut... yes
-checking for dirname... yes
-checking for head... yes
-checking for mkdir... yes
-checking for sort... yes
-checking for zcat... yes
-checking for groff... yes
-checking for pfbtops... yes
-checking for gnuplot... yes
-checking that generated files are newer than configure... done
-configure: creating ./config.status
-config.status: creating Makefile
-config.status: creating src/Makefile
-config.status: creating scripts/Makefile
-config.status: creating data/Makefile
-config.status: creating config.h
-config.status: executing depfiles commands
-config.status: executing libtool commands
-Removing intermediate container f89dc061bc37
- ---> 3271861542c4
-Step 28/34 : RUN make -j 1
- ---> Running in af2ba0a1c2e2
-make  all-recursive
-make[1]: Entering directory '/EPACTS_SKATOh'
-Making all in src
-make[2]: Entering directory '/EPACTS_SKATOh/src'
-gcc-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT bedidx.o -MD -MP -MF .deps/bedidx.Tpo -c -o bedidx.o bedidx.c
-mv -f .deps/bedidx.Tpo .deps/bedidx.Po
-gcc-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT bgzf.o -MD -MP -MF .deps/bgzf.Tpo -c -o bgzf.o bgzf.c
-[91mbgzf.c: In function 'bgzf_close':
-bgzf.c:435:11: warning: variable 'count' set but not used [-Wunused-but-set-variable]
-  int ret, count, block_length;
-           ^
-[0m[91mbgzf.c: In function 'bgzf_check_EOF':
-bgzf.c:59:34: warning: ignoring return value of 'fread', declared with attribute warn_unused_result [-Wunused-result]
- #define _bgzf_read(fp, buf, len) fread(buf, 1, len, fp)
-                                  ^
-bgzf.c:467:2: note: in expansion of macro '_bgzf_read'
-  _bgzf_read(fp->fp, buf, 28);
-  ^
-[0mmv -f .deps/bgzf.Tpo .deps/bgzf.Po
-gcc-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT knetfile.o -MD -MP -MF .deps/knetfile.Tpo -c -o knetfile.o knetfile.c
-[91mIn file included from knetfile.c:49:0:
-knetfile.c: In function 'kftp_send_cmd':
-knetfile.h:9:32: warning: ignoring return value of 'write', declared with attribute warn_unused_result [-Wunused-result]
- #define netwrite(fd, ptr, len) write(fd, ptr, len)
-                                ^
-knetfile.c:239:2: note: in expansion of macro 'netwrite'
-  netwrite(ftp->ctrl_fd, cmd, strlen(cmd));
-  ^
-[0m[91mknetfile.c: In function 'khttp_connect_file':
-knetfile.h:9:32: warning: ignoring return value of 'write', declared with attribute warn_unused_result [-Wunused-result]
- #define netwrite(fd, ptr, len) write(fd, ptr, len)
-                                ^
-knetfile.c:418:2: note: in expansion of macro 'netwrite'
-  netwrite(fp->fd, buf, l);
-  ^
-[0mmv -f .deps/knetfile.Tpo .deps/knetfile.Po
-gcc-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT kstring.o -MD -MP -MF .deps/kstring.Tpo -c -o kstring.o kstring.c
-mv -f .deps/kstring.Tpo .deps/kstring.Po
-gcc-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT index.o -MD -MP -MF .deps/index.Tpo -c -o index.o index.c
-mv -f .deps/index.Tpo .deps/index.Po
-rm -f libtabix.a
-ar cru libtabix.a bedidx.o bgzf.o knetfile.o kstring.o index.o 
-[91mar: `u' modifier ignored since `D' is the default (see `U')
-[0mranlib libtabix.a
-g++-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT pEmmax.o -MD -MP -MF .deps/pEmmax.Tpo -c -o pEmmax.o pEmmax.cpp
-mv -f .deps/pEmmax.Tpo .deps/pEmmax.Po
-g++-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT Parameters.o -MD -MP -MF .deps/Parameters.Tpo -c -o Parameters.o Parameters.cpp
-mv -f .deps/Parameters.Tpo .deps/Parameters.Po
-g++-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT Error.o -MD -MP -MF .deps/Error.Tpo -c -o Error.o Error.cpp
-mv -f .deps/Error.Tpo .deps/Error.Po
-g++-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT PhredHelper.o -MD -MP -MF .deps/PhredHelper.Tpo -c -o PhredHelper.o PhredHelper.cpp
-mv -f .deps/PhredHelper.Tpo .deps/PhredHelper.Po
-g++-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT codonHelper.o -MD -MP -MF .deps/codonHelper.Tpo -c -o codonHelper.o codonHelper.cpp
-mv -f .deps/codonHelper.Tpo .deps/codonHelper.Po
-/bin/bash ../libtool  --tag=CXX   --mode=link g++-5  -g -O2   -o pEmmax pEmmax.o Parameters.o Error.o PhredHelper.o codonHelper.o libtabix.a -lz 
-libtool: link: g++-5 -g -O2 -o pEmmax pEmmax.o Parameters.o Error.o PhredHelper.o codonHelper.o  libtabix.a -lz
-g++-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT vcfast.o -MD -MP -MF .deps/vcfast.Tpo -c -o vcfast.o vcfast.cpp
-mv -f .deps/vcfast.Tpo .deps/vcfast.Po
-g++-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT genomePosition.o -MD -MP -MF .deps/genomePosition.Tpo -c -o genomePosition.o genomePosition.cpp
-mv -f .deps/genomePosition.Tpo .deps/genomePosition.Po
-/bin/bash ../libtool  --tag=CXX   --mode=link g++-5  -g -O2   -o vcfast vcfast.o Error.o PhredHelper.o Parameters.o codonHelper.o genomePosition.o libtabix.a -lz 
-libtool: link: g++-5 -g -O2 -o vcfast vcfast.o Error.o PhredHelper.o Parameters.o codonHelper.o genomePosition.o  libtabix.a -lz
-g++-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT chaps.o -MD -MP -MF .deps/chaps.Tpo -c -o chaps.o chaps.cpp
-[91mIn file included from chaps.cpp:7:0:
-sparseHMM.h: In member function 'void sparseHMM::betweenForwardBackward(int)':
-sparseHMM.h:162:7: warning: 'nrmv' may be used uninitialized in this function [-Wmaybe-uninitialized]
-       if ( nrmv > 0 ) {
-       ^
-sparseHMM.h:137:20: note: 'nrmv' was declared here
-       int i, nrnd, nrmv;
-                    ^
-[0mmv -f .deps/chaps.Tpo .deps/chaps.Po
-/bin/bash ../libtool  --tag=CXX   --mode=link g++-5  -g -O2   -o chaps chaps.o Error.o PhredHelper.o Parameters.o libtabix.a -lz 
-libtool: link: g++-5 -g -O2 -o chaps chaps.o Error.o PhredHelper.o Parameters.o  libtabix.a -lz
-g++-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT Anno.o -MD -MP -MF .deps/Anno.Tpo -c -o Anno.o Anno.cpp
-mv -f .deps/Anno.Tpo .deps/Anno.Po
-g++-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT IO.o -MD -MP -MF .deps/IO.Tpo -c -o IO.o IO.cpp
-mv -f .deps/IO.Tpo .deps/IO.Po
-/bin/bash ../libtool  --tag=CXX   --mode=link g++-5  -g -O2   -o anno Anno.o IO.o libtabix.a -lz 
-libtool: link: g++-5 -g -O2 -o anno Anno.o IO.o  libtabix.a -lz
-gcc-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT bgzip.o -MD -MP -MF .deps/bgzip.Tpo -c -o bgzip.o bgzip.c
-[91mbgzip.c: In function 'main':
-bgzip.c:198:4: warning: ignoring return value of 'write', declared with attribute warn_unused_result [-Wunused-result]
-    write(f_dst, buffer, c);
-    ^
-[0m[91mbgzip.c: In function 'write_open':
-bgzip.c:57:4: warning: ignoring return value of 'scanf', declared with attribute warn_unused_result [-Wunused-result]
-    scanf("%c", &c);
-    ^
-[0mmv -f .deps/bgzip.Tpo .deps/bgzip.Po
-/bin/bash ../libtool  --tag=CC   --mode=link gcc-5  -g -O2   -o bgzip bgzip.o bedidx.o bgzf.o knetfile.o kstring.o  -lz 
-libtool: link: gcc-5 -g -O2 -o bgzip bgzip.o bedidx.o bgzf.o knetfile.o kstring.o  -lz
-gcc-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT tabix.o -MD -MP -MF .deps/tabix.Tpo -c -o tabix.o tabix.c
-mv -f .deps/tabix.Tpo .deps/tabix.Po
-/bin/bash ../libtool  --tag=CC   --mode=link gcc-5  -g -O2   -o tabix tabix.o bedidx.o bgzf.o knetfile.o kstring.o index.o  -lz 
-libtool: link: gcc-5 -g -O2 -o tabix tabix.o bedidx.o bgzf.o knetfile.o kstring.o index.o  -lz
-make[2]: Leaving directory '/EPACTS_SKATOh/src'
-Making all in data
-make[2]: Entering directory '/EPACTS_SKATOh/data'
-make[2]: Nothing to be done for 'all'.
-make[2]: Leaving directory '/EPACTS_SKATOh/data'
-Making all in scripts
-make[2]: Entering directory '/EPACTS_SKATOh/scripts'
-make[2]: Nothing to be done for 'all'.
-make[2]: Leaving directory '/EPACTS_SKATOh/scripts'
-make[2]: Entering directory '/EPACTS_SKATOh'
-make[2]: Nothing to be done for 'all-am'.
-make[2]: Leaving directory '/EPACTS_SKATOh'
-make[1]: Leaving directory '/EPACTS_SKATOh'
-Removing intermediate container af2ba0a1c2e2
- ---> 648126174806
-Step 29/34 : RUN make -j 1 install
- ---> Running in 2c4434bb9d46
-Making install in src
-make[1]: Entering directory '/EPACTS_SKATOh/src'
-make[2]: Entering directory '/EPACTS_SKATOh/src'
- /bin/mkdir -p '/home/epacts/bin'
-  /bin/bash ../libtool   --mode=install /usr/bin/install -c pEmmax vcfast chaps anno bgzip tabix '/home/epacts/bin'
-libtool: install: /usr/bin/install -c pEmmax /home/epacts/bin/pEmmax
-libtool: install: /usr/bin/install -c vcfast /home/epacts/bin/vcfast
-libtool: install: /usr/bin/install -c chaps /home/epacts/bin/chaps
-libtool: install: /usr/bin/install -c anno /home/epacts/bin/anno
-libtool: install: /usr/bin/install -c bgzip /home/epacts/bin/bgzip
-libtool: install: /usr/bin/install -c tabix /home/epacts/bin/tabix
-make[2]: Nothing to be done for 'install-data-am'.
-make[2]: Leaving directory '/EPACTS_SKATOh/src'
-make[1]: Leaving directory '/EPACTS_SKATOh/src'
-Making install in data
-make[1]: Entering directory '/EPACTS_SKATOh/data'
-make[2]: Entering directory '/EPACTS_SKATOh/data'
-make[2]: Nothing to be done for 'install-exec-am'.
- /bin/mkdir -p '/home/epacts/share/EPACTS'
- /usr/bin/install -c -m 644 epactsSingle.R epactsGroup.R epactsMulti.R mmSKAT_0.95.tar.gz group.b.collapse.R group.b.madsen.R group.q.reverse.R group.skat.R group.b.burden.R group.mmskat.R group.b.wcnt.R group.q.wilcox.R single.b.firth.R single.b.firthCov.R single.b.wald.R single.q.reverse.R single.b.spa2.R single.b.sna0.R single.b.sna2.R single.b.lrt.R single.q.linear.R single.q.wilcox.R single.q.lm.R single.b.score.R single.q.emmaxR.R multi.q.linear.R prologue.ps genetic_map_GRCh37_wgs.txt.gz genetic_map_GRCh37_wgs.txt.gz.tbi GillSansItalic.pfb GillSansMT.pfb hg19_refFlat.txt.gz hg19_refGene.txt.gz hg19_gencodeV7.txt.gz calibri.pfb arial.pfb 1000G_exome_chr20_example_softFiltered.calls.vcf.gz 1000G_exome_chr20_example_softFiltered.calls.vcf.gz.tbi 1000G_dummy_pheno.ped codon.txt '/home/epacts/share/EPACTS'
- /usr/bin/install -c -m 644 priority.txt epactsR_3.3.2.tar.gz wgEncodeBroadHmmGm12878HMM.bed.gz wgEncodeBroadHmmH1hescHMM.bed.gz.tbi wgEncodeBroadHmmHmecHMM.bed.gz wgEncodeBroadHmmHsmmHMM.bed.gz.tbi wgEncodeBroadHmmK562HMM.bed.gz wgEncodeBroadHmmNhekHMM.bed.gz.tbi wgEncodeBroadHmmGm12878HMM.bed.gz.tbi wgEncodeBroadHmmHepg2HMM.bed.gz wgEncodeBroadHmmHmecHMM.bed.gz.tbi wgEncodeBroadHmmHuvecHMM.bed.gz wgEncodeBroadHmmK562HMM.bed.gz.tbi wgEncodeBroadHmmNhlfHMM.bed.gz wgEncodeBroadHmmH1hescHMM.bed.gz wgEncodeBroadHmmHepg2HMM.bed.gz.tbi wgEncodeBroadHmmHsmmHMM.bed.gz wgEncodeBroadHmmHuvecHMM.bed.gz.tbi wgEncodeBroadHmmNhekHMM.bed.gz wgEncodeBroadHmmNhlfHMM.bed.gz.tbi hg19_gencodeV14.txt.gz '/home/epacts/share/EPACTS'
-make[2]: Leaving directory '/EPACTS_SKATOh/data'
-make[1]: Leaving directory '/EPACTS_SKATOh/data'
-Making install in scripts
-make[1]: Entering directory '/EPACTS_SKATOh/scripts'
-make[2]: Entering directory '/EPACTS_SKATOh/scripts'
- /bin/mkdir -p '/home/epacts/bin'
- /usr/bin/install -c epacts epacts-single epacts-anno epacts-cat epacts-group epacts-make-group epacts-make-kin epacts-zoom epacts-multi epacts-cis-extract epacts-download epacts-plot epacts-pca-plot epacts-enrich epstopdf epacts.pm wGetOptions.pm test_run_epacts.sh '/home/epacts/bin'
-make[2]: Nothing to be done for 'install-data-am'.
-make[2]: Leaving directory '/EPACTS_SKATOh/scripts'
-make[1]: Leaving directory '/EPACTS_SKATOh/scripts'
-make[1]: Entering directory '/EPACTS_SKATOh'
-make[2]: Entering directory '/EPACTS_SKATOh'
-make[2]: Nothing to be done for 'install-exec-am'.
-make[2]: Nothing to be done for 'install-data-am'.
-make[2]: Leaving directory '/EPACTS_SKATOh'
-make[1]: Leaving directory '/EPACTS_SKATOh'
-Removing intermediate container 2c4434bb9d46
- ---> 1ff672c3c21d
-Step 30/34 : ENV EPACTS_DIR=/home/epacts
- ---> Running in 0b7bddd5988c
-Removing intermediate container 0b7bddd5988c
- ---> 09ed4db13834
-Step 31/34 : RUN ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.4 /usr/lib/x86_64-linux-gnu/libgfortran.so
- ---> Running in 41909d2d0a73
-Removing intermediate container 41909d2d0a73
- ---> c68f80ed77a7
-Step 32/34 : WORKDIR /EPACTS_SKATOh/data
- ---> Running in b4529646384c
-Removing intermediate container b4529646384c
- ---> 126c4da90fa3
-Step 33/34 : RUN R CMD INSTALL /EPACTS_SKATOh/data/RcppEigen_0.3.3.9.3.tar.gz
- ---> Running in 21ca618e4765
+Step 23/37 : RUN git clone https://github.com/ClaudioCappadona/EPACTS_SKATOh.git --single-branch --branch SKATOh_test
+ ---> Using cache
+ ---> f8ccaaba03ba
+Step 24/37 : WORKDIR /EPACTS_SKATOh
+ ---> Using cache
+ ---> 61ac7b192435
+Step 25/37 : RUN autoreconf -vfi
+ ---> Using cache
+ ---> 8fa9143a671c
+Step 26/37 : RUN CC="gcc-5" CXX="g++-5" ./configure --prefix /home/epacts
+ ---> Using cache
+ ---> c8d1b0c20e6c
+Step 27/37 : RUN make -j 1
+ ---> Using cache
+ ---> 662d11c0c8be
+Step 28/37 : RUN make -j 1 install
+ ---> Using cache
+ ---> 135d7e6e8f82
+Step 29/37 : ENV EPACTS_DIR=/home/epacts
+ ---> Using cache
+ ---> 08ccf29ebf1c
+Step 30/37 : RUN ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.4 /usr/lib/x86_64-linux-gnu/libgfortran.so
+ ---> Using cache
+ ---> 2f69a35c16fa
+Step 31/37 : WORKDIR /EPACTS_SKATOh/data
+ ---> Using cache
+ ---> 251daa5f2205
+Step 32/37 : RUN R CMD INSTALL Rcpp_1.0.10.tar.gz
+ ---> Running in f44d7b63b310
 [91m* installing to library '/usr/local/lib/R/library'
-[0m[91mERROR: dependency 'Rcpp' is not available for package 'RcppEigen'
-* removing '/usr/local/lib/R/library/RcppEigen'
+[0m[91m* installing *source* package 'Rcpp' ...
+[0m[91m** package 'Rcpp' successfully unpacked and MD5 sums checked
+** using staged installation
+[0m[91m** libs
+[0mg++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG -I../inst/include/  -I/usr/local/include   -fpic  -g -O2  -c api.cpp -o api.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG -I../inst/include/  -I/usr/local/include   -fpic  -g -O2  -c attributes.cpp -o attributes.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG -I../inst/include/  -I/usr/local/include   -fpic  -g -O2  -c barrier.cpp -o barrier.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG -I../inst/include/  -I/usr/local/include   -fpic  -g -O2  -c date.cpp -o date.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG -I../inst/include/  -I/usr/local/include   -fpic  -g -O2  -c module.cpp -o module.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG -I../inst/include/  -I/usr/local/include   -fpic  -g -O2  -c rcpp_init.cpp -o rcpp_init.o
+g++ -std=gnu++14 -shared -L/usr/local/lib -o Rcpp.so api.o attributes.o barrier.o date.o module.o rcpp_init.o
+[91minstalling to /usr/local/lib/R/library/00LOCK-Rcpp/00new/Rcpp/libs
+[0m[91m** R
+[0m[91m** inst
+[0m[91m** byte-compile and prepare package for lazy loading
+[0m[91m** help
+[0m[91m*** installing help indices
+[0m[91m** building package indices
+[0m[91m** installing vignettes
+[0m[91m** testing if installed package can be loaded from temporary location
+[0m[91m** checking absolute paths in shared objects and dynamic libraries
+[0m[91m** testing if installed package can be loaded from final location
+[0m[91m** testing if installed package keeps a record of temporary installation path
+[0m[91m* DONE (Rcpp)
+[0mRemoving intermediate container f44d7b63b310
+ ---> 45cd52b7c01d
+Step 33/37 : RUN R CMD INSTALL RcppEigen_0.3.3.9.3.tar.gz
+ ---> Running in 2cc290e4d3da
+[91mWarning: invalid package 'RcppEigen_0.3.3.9.3.tar.gz'
+Error: ERROR: no packages specified
 [0m
