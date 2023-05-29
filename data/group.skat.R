@@ -31,7 +31,7 @@
 #    if ( found ) { print("Waiting for SKAT package being installed..") }
 #    else { stop("Package SKAT is not found after a long wait"); }
 #  }
-}
+#}
 library(SKAT)
 #library(mmSKAT)
 
