@@ -23,7 +23,8 @@ RUN ./configure --with-readline=no --with-x=no
 RUN make -j 1
 RUN make install
 
-RUN apt-get update && apt-get install -y gnuplot5 git ghostscript groff vim libtool
+RUN apt-get update && apt-get install -y gnuplot5 git ghostscript groff vim libtool tabix curl
+RUN ln -s /usr/bin/tabix /usr/local/bin/tabix
 
 RUN mkdir /home/epacts && chmod 777 /home/epacts
 
@@ -38,15 +39,15 @@ WORKDIR /
 #RUN git clone https://github.com/statgen/EPACTS.git
 RUN git clone https://github.com/ClaudioCappadona/EPACTS_SKATOh.git --single-branch --branch SKATOh_test
 
-#WORKDIR EPACTS
-WORKDIR /EPACTS_SKATOh
+RUN mv /EPACTS_SKATOh /EPACTS
+WORKDIR /EPACTS
+RUN ln -s /EPACTS/data /usr/local/share/EPACTS
+RUN ln -s /EPACTS/scripts /usr/local/bin
 
 RUN autoreconf -vfi
 RUN CC="gcc-5" CXX="g++-5" ./configure --prefix /home/epacts
 RUN make -j 1
 RUN make -j 1 install
-
-ENV EPACTS_DIR=/home/epacts
 
 #RUN apt-get install -y gfortran
 RUN ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.4 /usr/lib/x86_64-linux-gnu/libgfortran.so
@@ -59,3 +60,5 @@ RUN R CMD INSTALL RSpectra_0.16-1.tar.gz
 RUN R CMD INSTALL SPAtest_3.1.2.tar.gz
 RUN R CMD INSTALL SKAT_2.2.5.tar.gz
 RUN R CMD INSTALL CompQuadForm_1.4.3.tar.gz
+
+ENV EPACTS_DIR=/home/epacts

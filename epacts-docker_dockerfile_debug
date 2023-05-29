@@ -1,20 +1,15 @@
 ############################################################
 # Dockerfile to build EPACTS
 
-#FROM ubuntu:18.04
-#FROM ubuntu:20.04
-FROM openanalytics/r-base
+FROM ubuntu:18.04
 
 USER root
-RUN export DEBIAN_FRONTEND=noninteractive
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y tzdata
+
+RUN apt-get update && apt-get install -y build-essential apt-utils gnuplot5 git zlib1g-dev ghostscript groff vim
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
 RUN dpkg-reconfigure --frontend noninteractive tzdata
-RUN apt-get update && apt-get install -y build-essential apt-utils
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gnuplot
-RUN apt-get install -y git zlib1g-dev ghostscript groff vim
 
-
-RUN apt-get update && apt-get install -y gcc g++ automake
+RUN apt-get update && apt-get install -y gcc-5 g++-5 automake
 RUN apt-get update && apt-get install -y --no-install-recommends \
     r-base-core \
     r-recommended \
@@ -22,22 +17,51 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN apt-get update && apt-get install -y libtool
 
-RUN mkdir /home/epacts && chmod 777 /home/epacts
+#RUN mkdir /home/epacts && chmod 777 /home/epacts
 
-RUN ln -s /usr/bin/gcc /usr/local/bin/gcc
-RUN ln -s /usr/bin/g++ /usr/local/bin/g++
+RUN ln -s /usr/bin/gcc-5 /usr/local/bin/gcc && ln -s /usr/bin/g++-5 /usr/local/bin/g++
 
 ENV PATH=/usr/local/bin:$PATH
 
-RUN git clone https://github.com/statgen/EPACTS.git
-RUN rm /EPACTS/src/pEmmax.h
-RUN cp /home/asselta/ccappadona/software/EPACTS_SKATOh/pEmmax.h /EPACTS/src/
+###### installing what's needed for skatoh ################
 
-WORKDIR EPACTS
+RUN apt-get update && apt-get install -y gfortran zlib1g-dev bzip2 libbz2-dev liblzma-dev libcurl4-openssl-dev default-jre wget
+
+RUN ln -s /usr/lib/jvm /usr/local/lib/
+
+WORKDIR /usr/lib
+
+RUN wget https://ftp.exim.org/pub/pcre/pcre2-10.37.tar.gz && tar -xzvf pcre2-10.37.tar.gz
+
+WORKDIR /usr/lib/pcre2-10.37
+RUN ./configure
+RUN make -j 1
+RUN make install
+
+############################ building epacts ########################à
+
+#RUN git clone https://github.com/statgen/EPACTS.git
+RUN git clone https://github.com/ClaudioCappadona/EPACTS_SKATOh.git --single-branch --branch SKATOh_test
+
+
+WORKDIR EPACTS_SKATOh
 RUN autoreconf -vfi
-RUN CC="gcc" CXX="g++" ./configure --prefix /home/epacts
+RUN CC="gcc-5" CXX="g++-5" ./configure --prefix /usr/local
 RUN make -j 1
 RUN make -j 1 install
 
-ENV EPACTS_DIR=/home/epacts
+ENV EPACTS_DIR=/usr/local
 
+WORKDIR /opt
+RUN mkdir R
+WORKDIR R
+
+RUN wget https://cran.r-project.org/src/base/R-4/R-4.2.0.tar.gz && tar -xzvf R-4.2.0.tar.gz
+WORKDIR R-4.2.0
+RUN ./configure --with-readline=no --with-x=no --prefix=/opt/R/R-4.2.0 --enable-R-shlib
+RUN make -j 1
+RUN make -j 1 install
+
+RUN export PATH="/opt/R/R-4.2.0/bin:$PATH"
+
+WORKDIR /usr/local

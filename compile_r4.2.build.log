@@ -1,98 +1,1423 @@
-Sending build context to Docker daemon  480.2MB
-Step 1/37 : FROM ubuntu:18.04
+Sending build context to Docker daemon  480.3MB
+Step 1/38 : FROM ubuntu:18.04
  ---> 5d2df19066ac
-Step 2/37 : USER root
+Step 2/38 : USER root
  ---> Using cache
  ---> 4cd684ad73e5
-Step 3/37 : RUN apt-get update && apt-get install -y build-essential apt-utils wget gcc-5 g++-5 automake gfortran
+Step 3/38 : RUN apt-get update && apt-get install -y build-essential apt-utils wget gcc-5 g++-5 automake gfortran
  ---> Using cache
  ---> 2e23d483543b
-Step 4/37 : RUN apt-get update && apt-get install -y zlib1g-dev bzip2 libbz2-dev liblzma-dev libcurl4-openssl-dev default-jre
+Step 4/38 : RUN apt-get update && apt-get install -y zlib1g-dev bzip2 libbz2-dev liblzma-dev libcurl4-openssl-dev default-jre
  ---> Using cache
  ---> d55180f166c5
-Step 5/37 : WORKDIR /usr/lib
+Step 5/38 : WORKDIR /usr/lib
  ---> Using cache
  ---> 9e6b2dd0dd86
-Step 6/37 : RUN wget https://ftp.exim.org/pub/pcre/pcre2-10.37.tar.gz && tar -xzvf pcre2-10.37.tar.gz
+Step 6/38 : RUN wget https://ftp.exim.org/pub/pcre/pcre2-10.37.tar.gz && tar -xzvf pcre2-10.37.tar.gz
  ---> Using cache
  ---> 31642b39d143
-Step 7/37 : WORKDIR /usr/lib/pcre2-10.37
+Step 7/38 : WORKDIR /usr/lib/pcre2-10.37
  ---> Using cache
  ---> a0c0d8bdb44a
-Step 8/37 : RUN ./configure
+Step 8/38 : RUN ./configure
  ---> Using cache
  ---> 11a83b9c7e32
-Step 9/37 : RUN make -j 1
+Step 9/38 : RUN make -j 1
  ---> Using cache
  ---> 75a8d00bb67a
-Step 10/37 : RUN make install
+Step 10/38 : RUN make install
  ---> Using cache
  ---> c8365d1516b8
-Step 11/37 : WORKDIR /usr/lib
+Step 11/38 : WORKDIR /usr/lib
  ---> Using cache
  ---> cb81bc1ff58e
-Step 12/37 : RUN wget https://cran.r-project.org/src/base/R-4/R-4.2.0.tar.gz && tar -xzvf R-4.2.0.tar.gz
+Step 12/38 : RUN wget https://cran.r-project.org/src/base/R-4/R-4.2.0.tar.gz && tar -xzvf R-4.2.0.tar.gz
  ---> Using cache
  ---> 0b8cb6f54c2c
-Step 13/37 : WORKDIR /usr/lib/R-4.2.0
+Step 13/38 : WORKDIR /usr/lib/R-4.2.0
  ---> Using cache
  ---> 99d84c5595f8
-Step 14/37 : RUN ./configure --with-readline=no --with-x=no
+Step 14/38 : RUN ./configure --with-readline=no --with-x=no
  ---> Using cache
  ---> 1bb93935bcac
-Step 15/37 : RUN make -j 1
+Step 15/38 : RUN make -j 1
  ---> Using cache
  ---> ac59ea549171
-Step 16/37 : RUN make install
+Step 16/38 : RUN make install
  ---> Using cache
  ---> 6a3338bd7605
-Step 17/37 : RUN apt-get update && apt-get install -y gnuplot5 git ghostscript groff vim libtool
- ---> Using cache
- ---> 5fd8302e5b1b
-Step 18/37 : RUN mkdir /home/epacts && chmod 777 /home/epacts
- ---> Using cache
- ---> b6b1c1a8228f
-Step 19/37 : RUN ln -s /usr/bin/gcc-5 /usr/local/bin/gcc
- ---> Using cache
- ---> 2a95b49d7b52
-Step 20/37 : RUN ln -s /usr/bin/g++-5 /usr/local/bin/g++
- ---> Using cache
- ---> b7c9902c3804
-Step 21/37 : ENV PATH=/usr/local/bin:$PATH
- ---> Using cache
- ---> 3a4ebfffd814
-Step 22/37 : WORKDIR /
- ---> Using cache
- ---> 36097d9f65ec
-Step 23/37 : RUN git clone https://github.com/ClaudioCappadona/EPACTS_SKATOh.git --single-branch --branch SKATOh_test
- ---> Using cache
- ---> f8ccaaba03ba
-Step 24/37 : WORKDIR /EPACTS_SKATOh
- ---> Using cache
- ---> 61ac7b192435
-Step 25/37 : RUN autoreconf -vfi
- ---> Using cache
- ---> 8fa9143a671c
-Step 26/37 : RUN CC="gcc-5" CXX="g++-5" ./configure --prefix /home/epacts
- ---> Using cache
- ---> c8d1b0c20e6c
-Step 27/37 : RUN make -j 1
- ---> Using cache
- ---> 662d11c0c8be
-Step 28/37 : RUN make -j 1 install
- ---> Using cache
- ---> 135d7e6e8f82
-Step 29/37 : ENV EPACTS_DIR=/home/epacts
- ---> Using cache
- ---> 08ccf29ebf1c
-Step 30/37 : RUN ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.4 /usr/lib/x86_64-linux-gnu/libgfortran.so
- ---> Using cache
- ---> 2f69a35c16fa
-Step 31/37 : WORKDIR /EPACTS_SKATOh/data
- ---> Using cache
- ---> 251daa5f2205
-Step 32/37 : RUN R CMD INSTALL Rcpp_1.0.10.tar.gz
- ---> Running in f44d7b63b310
+Step 17/38 : RUN apt-get update && apt-get install -y gnuplot5 git ghostscript groff vim libtool tabix curl
+ ---> Running in db9cc380b202
+Get:1 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
+Hit:2 http://archive.ubuntu.com/ubuntu bionic InRelease
+Get:3 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
+Get:4 http://archive.ubuntu.com/ubuntu bionic-backports InRelease [83.3 kB]
+Get:5 http://security.ubuntu.com/ubuntu bionic-security/main amd64 Packages [3330 kB]
+Get:6 http://archive.ubuntu.com/ubuntu bionic-updates/universe amd64 Packages [2399 kB]
+Get:7 http://security.ubuntu.com/ubuntu bionic-security/universe amd64 Packages [1628 kB]
+Get:8 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 Packages [3739 kB]
+Fetched 11.4 MB in 3s (4097 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  adwaita-icon-theme aglfn dconf-gsettings-backend dconf-service file
+  fontconfig fonts-droid-fallback fonts-noto-mono git-man glib-networking
+  glib-networking-common glib-networking-services gnuplot-data gnuplot-qt
+  groff-base gsettings-desktop-schemas gsfonts gtk-update-icon-cache
+  hicolor-icon-theme humanity-icon-theme imagemagick imagemagick-6-common
+  imagemagick-6.q16 less libcairo-gobject2 libcairo2 libcolord2 libcroco3
+  libcupsfilters1 libcupsimage2 libcurl3-gnutls libdatrie1 libdconf1
+  libdjvulibre-text libdjvulibre21 libdouble-conversion1 libegl-mesa0 libegl1
+  libepoxy0 liberror-perl libevdev2 libfftw3-double3 libgail-common libgail18
+  libgbm1 libgd3 libgdk-pixbuf2.0-0 libgdk-pixbuf2.0-bin
+  libgdk-pixbuf2.0-common libgpm2 libgs9 libgs9-common libgtk-3-0 libgtk-3-bin
+  libgtk-3-common libgtk2.0-0 libgtk2.0-bin libgtk2.0-common libgudev-1.0-0
+  libidn11 libijs-0.35 libilmbase12 libinput-bin libinput10 libjbig0
+  libjbig2dec0 libjson-glib-1.0-0 libjson-glib-1.0-common liblqr-1-0
+  libltdl-dev libltdl7 liblua5.3-0 libmagic-mgc libmagic1
+  libmagickcore-6.q16-3 libmagickcore-6.q16-3-extra libmagickwand-6.q16-3
+  libmpdec2 libmtdev1 libnetpbm10 libnotify4 libopenexr22 libpango-1.0-0
+  libpangocairo-1.0-0 libpangoft2-1.0-0 libpaper-utils libpaper1 libpixman-1-0
+  libproxy1v5 libpython3.6 libpython3.6-minimal libpython3.6-stdlib
+  libqt5core5a libqt5dbus5 libqt5gui5 libqt5network5 libqt5printsupport5
+  libqt5svg5 libqt5widgets5 librest-0.7-0 librsvg2-2 librsvg2-common
+  libsoup-gnome2.4-1 libsoup2.4-1 libssl1.0.0 libthai-data libthai0 libtiff5
+  libwacom-bin libwacom-common libwacom2 libwayland-client0 libwayland-cursor0
+  libwayland-egl1 libwayland-server0 libwebp6 libwmf0.2-7 libwxbase3.0-0v5
+  libwxgtk3.0-0v5 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0
+  libxcb-render-util0 libxcb-render0 libxcb-shm0 libxcb-util1 libxcb-xfixes0
+  libxcb-xinerama0 libxcb-xkb1 libxcursor1 libxkbcommon-x11-0 libxkbcommon0
+  mime-support netpbm notification-daemon openssh-client poppler-data psutils
+  qt5-gtk-platformtheme qttranslations5-l10n ubuntu-mono vim-common
+  vim-runtime xauth xkb-data xxd
+Suggested packages:
+  fonts-noto ghostscript-x gettext-base git-daemon-run | git-daemon-sysvinit
+  git-doc git-el git-email git-gui gitk gitweb git-cvs git-mediawiki git-svn
+  gnuplot-doc imagemagick-doc autotrace cups-bsd | lpr | lprng enscript ffmpeg
+  gimp grads graphviz hp2xx html2ps libwmf-bin mplayer povray radiance
+  sane-utils texlive-base-bin transfig ufraw-batch xdg-utils colord
+  libfftw3-bin libfftw3-dev libgd-tools gpm gvfs libtool-doc inkscape
+  libjxr-tools qt5-image-formats-plugins qtwayland5 librsvg2-bin gcj-jdk
+  libwmf0.2-7-gtk keychain libpam-ssh monkeysphere ssh-askpass poppler-utils
+  fonts-japanese-mincho | fonts-ipafont-mincho fonts-japanese-gothic
+  | fonts-ipafont-gothic fonts-arphic-ukai fonts-arphic-uming fonts-nanum
+  ctags vim-doc vim-scripts
+The following NEW packages will be installed:
+  adwaita-icon-theme aglfn curl dconf-gsettings-backend dconf-service file
+  fontconfig fonts-droid-fallback fonts-noto-mono ghostscript git git-man
+  glib-networking glib-networking-common glib-networking-services gnuplot
+  gnuplot-data gnuplot-qt groff groff-base gsettings-desktop-schemas gsfonts
+  gtk-update-icon-cache hicolor-icon-theme humanity-icon-theme imagemagick
+  imagemagick-6-common imagemagick-6.q16 less libcairo-gobject2 libcairo2
+  libcolord2 libcroco3 libcupsfilters1 libcupsimage2 libcurl3-gnutls
+  libdatrie1 libdconf1 libdjvulibre-text libdjvulibre21 libdouble-conversion1
+  libegl-mesa0 libegl1 libepoxy0 liberror-perl libevdev2 libfftw3-double3
+  libgail-common libgail18 libgbm1 libgd3 libgdk-pixbuf2.0-0
+  libgdk-pixbuf2.0-bin libgdk-pixbuf2.0-common libgpm2 libgs9 libgs9-common
+  libgtk-3-0 libgtk-3-bin libgtk-3-common libgtk2.0-0 libgtk2.0-bin
+  libgtk2.0-common libgudev-1.0-0 libidn11 libijs-0.35 libilmbase12
+  libinput-bin libinput10 libjbig0 libjbig2dec0 libjson-glib-1.0-0
+  libjson-glib-1.0-common liblqr-1-0 libltdl-dev libltdl7 liblua5.3-0
+  libmagic-mgc libmagic1 libmagickcore-6.q16-3 libmagickcore-6.q16-3-extra
+  libmagickwand-6.q16-3 libmpdec2 libmtdev1 libnetpbm10 libnotify4
+  libopenexr22 libpango-1.0-0 libpangocairo-1.0-0 libpangoft2-1.0-0
+  libpaper-utils libpaper1 libpixman-1-0 libproxy1v5 libpython3.6
+  libpython3.6-minimal libpython3.6-stdlib libqt5core5a libqt5dbus5 libqt5gui5
+  libqt5network5 libqt5printsupport5 libqt5svg5 libqt5widgets5 librest-0.7-0
+  librsvg2-2 librsvg2-common libsoup-gnome2.4-1 libsoup2.4-1 libssl1.0.0
+  libthai-data libthai0 libtiff5 libtool libwacom-bin libwacom-common
+  libwacom2 libwayland-client0 libwayland-cursor0 libwayland-egl1
+  libwayland-server0 libwebp6 libwmf0.2-7 libwxbase3.0-0v5 libwxgtk3.0-0v5
+  libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0
+  libxcb-render-util0 libxcb-render0 libxcb-shm0 libxcb-util1 libxcb-xfixes0
+  libxcb-xinerama0 libxcb-xkb1 libxcursor1 libxkbcommon-x11-0 libxkbcommon0
+  mime-support netpbm notification-daemon openssh-client poppler-data psutils
+  qt5-gtk-platformtheme qttranslations5-l10n tabix ubuntu-mono vim vim-common
+  vim-runtime xauth xkb-data xxd
+0 upgraded, 155 newly installed, 0 to remove and 17 not upgraded.
+Need to get 72.4 MB of archives.
+After this operation, 321 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu bionic/main amd64 fontconfig amd64 2.12.6-0ubuntu2 [169 kB]
+Get:2 http://archive.ubuntu.com/ubuntu bionic/main amd64 fonts-droid-fallback all 1:6.0.1r16-1.1 [1805 kB]
+Get:3 http://archive.ubuntu.com/ubuntu bionic/main amd64 libfftw3-double3 amd64 3.3.7-1 [735 kB]
+Get:4 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libjbig0 amd64 2.1-3.1ubuntu0.18.04.1 [27.0 kB]
+Get:5 http://archive.ubuntu.com/ubuntu bionic/main amd64 liblqr-1-0 amd64 0.4.2-2.1 [27.7 kB]
+Get:6 http://archive.ubuntu.com/ubuntu bionic/main amd64 libltdl7 amd64 2.4.6-2 [38.8 kB]
+Get:7 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libtiff5 amd64 4.0.9-5ubuntu0.10 [154 kB]
+Get:8 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 imagemagick-6-common all 8:6.9.7.4+dfsg-16ubuntu6.15 [60.2 kB]
+Get:9 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libmagickcore-6.q16-3 amd64 8:6.9.7.4+dfsg-16ubuntu6.15 [1621 kB]
+Get:10 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libmagickwand-6.q16-3 amd64 8:6.9.7.4+dfsg-16ubuntu6.15 [293 kB]
+Get:11 http://archive.ubuntu.com/ubuntu bionic/main amd64 libdouble-conversion1 amd64 2.0.1-4ubuntu1 [33.0 kB]
+Get:12 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libqt5core5a amd64 5.9.5+dfsg-0ubuntu2.6 [2035 kB]
+Get:13 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libwayland-server0 amd64 1.16.0-1ubuntu1.1~18.04.4 [29.6 kB]
+Get:14 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgbm1 amd64 20.0.8-0ubuntu1~18.04.1 [27.6 kB]
+Get:15 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libwayland-client0 amd64 1.16.0-1ubuntu1.1~18.04.4 [23.6 kB]
+Get:16 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb-xfixes0 amd64 1.13-2~ubuntu18.04 [9352 B]
+Get:17 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libegl-mesa0 amd64 20.0.8-0ubuntu1~18.04.1 [96.3 kB]
+Get:18 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libegl1 amd64 1.0.0-2ubuntu2.3 [32.0 kB]
+Get:19 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libevdev2 amd64 1.5.8+dfsg-1ubuntu0.2 [28.9 kB]
+Get:20 http://archive.ubuntu.com/ubuntu bionic/main amd64 libmtdev1 amd64 1.1.5-1ubuntu3 [13.8 kB]
+Get:21 http://archive.ubuntu.com/ubuntu bionic/main amd64 libgudev-1.0-0 amd64 1:232-2 [13.6 kB]
+Get:22 http://archive.ubuntu.com/ubuntu bionic/main amd64 libwacom-common all 0.29-1 [36.9 kB]
+Get:23 http://archive.ubuntu.com/ubuntu bionic/main amd64 libwacom2 amd64 0.29-1 [17.7 kB]
+Get:24 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libinput-bin amd64 1.10.4-1ubuntu0.18.04.3 [11.3 kB]
+Get:25 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libinput10 amd64 1.10.4-1ubuntu0.18.04.3 [86.7 kB]
+Get:26 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libqt5dbus5 amd64 5.9.5+dfsg-0ubuntu2.6 [195 kB]
+Get:27 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libqt5network5 amd64 5.9.5+dfsg-0ubuntu2.6 [634 kB]
+Get:28 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxcb-icccm4 amd64 0.4.1-1ubuntu1 [10.4 kB]
+Get:29 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb-shm0 amd64 1.13-2~ubuntu18.04 [5600 B]
+Get:30 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxcb-util1 amd64 0.4.0-0ubuntu3 [11.2 kB]
+Get:31 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxcb-image0 amd64 0.4.0-1build1 [12.3 kB]
+Get:32 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxcb-keysyms1 amd64 0.4.0-1 [8406 B]
+Get:33 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb-randr0 amd64 1.13-2~ubuntu18.04 [16.4 kB]
+Get:34 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb-render0 amd64 1.13-2~ubuntu18.04 [14.7 kB]
+Get:35 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxcb-render-util0 amd64 0.3.9-1 [9638 B]
+Get:36 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb-xinerama0 amd64 1.13-2~ubuntu18.04 [5264 B]
+Get:37 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb-xkb1 amd64 1.13-2~ubuntu18.04 [30.1 kB]
+Get:38 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 xkb-data all 2.23.1-1ubuntu1.18.04.1 [325 kB]
+Get:39 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxkbcommon0 amd64 0.8.2-1~ubuntu18.04.1 [97.8 kB]
+Get:40 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxkbcommon-x11-0 amd64 0.8.2-1~ubuntu18.04.1 [13.4 kB]
+Get:41 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libqt5gui5 amd64 5.9.5+dfsg-0ubuntu2.6 [2568 kB]
+Get:42 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libqt5widgets5 amd64 5.9.5+dfsg-0ubuntu2.6 [2203 kB]
+Get:43 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libqt5svg5 amd64 5.9.5-0ubuntu1.1 [129 kB]
+Get:44 http://archive.ubuntu.com/ubuntu bionic/main amd64 poppler-data all 0.4.8-2 [1479 kB]
+Get:45 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libmagic-mgc amd64 1:5.32-2ubuntu0.4 [184 kB]
+Get:46 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libmagic1 amd64 1:5.32-2ubuntu0.4 [68.6 kB]
+Get:47 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 file amd64 1:5.32-2ubuntu0.4 [22.1 kB]
+Get:48 http://archive.ubuntu.com/ubuntu bionic/main amd64 less amd64 487-0.1 [112 kB]
+Get:49 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libidn11 amd64 1.33-2.1ubuntu1.2 [46.6 kB]
+Get:50 http://archive.ubuntu.com/ubuntu bionic/main amd64 libmpdec2 amd64 2.4.2-1ubuntu1 [84.1 kB]
+Get:51 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libpython3.6-minimal amd64 3.6.9-1~18.04ubuntu1.12 [533 kB]
+Get:52 http://archive.ubuntu.com/ubuntu bionic/main amd64 mime-support all 3.60ubuntu1 [30.1 kB]
+Get:53 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libpython3.6-stdlib amd64 3.6.9-1~18.04ubuntu1.12 [1713 kB]
+Get:54 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 xxd amd64 2:8.0.1453-1ubuntu1.13 [51.9 kB]
+Get:55 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 vim-common all 2:8.0.1453-1ubuntu1.13 [73.1 kB]
+Get:56 http://archive.ubuntu.com/ubuntu bionic/main amd64 groff-base amd64 1.22.3-10 [1153 kB]
+Get:57 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libssl1.0.0 amd64 1.0.2n-1ubuntu5.12 [1088 kB]
+Get:58 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 openssh-client amd64 1:7.6p1-4ubuntu0.7 [610 kB]
+Get:59 http://archive.ubuntu.com/ubuntu bionic/main amd64 xauth amd64 1:1.0.10-1 [24.6 kB]
+Get:60 http://archive.ubuntu.com/ubuntu bionic/main amd64 hicolor-icon-theme all 0.17-2 [9976 B]
+Get:61 http://archive.ubuntu.com/ubuntu bionic/main amd64 libgdk-pixbuf2.0-common all 2.36.11-2 [4536 B]
+Get:62 http://archive.ubuntu.com/ubuntu bionic/main amd64 libgdk-pixbuf2.0-0 amd64 2.36.11-2 [165 kB]
+Get:63 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 gtk-update-icon-cache amd64 3.22.30-1ubuntu4 [28.3 kB]
+Get:64 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libpixman-1-0 amd64 0.34.0-2ubuntu0.1 [229 kB]
+Get:65 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libcairo2 amd64 1.15.10-2ubuntu0.1 [580 kB]
+Get:66 http://archive.ubuntu.com/ubuntu bionic/main amd64 libcroco3 amd64 0.6.12-2 [81.3 kB]
+Get:67 http://archive.ubuntu.com/ubuntu bionic/main amd64 libthai-data all 0.1.27-2 [133 kB]
+Get:68 http://archive.ubuntu.com/ubuntu bionic/main amd64 libdatrie1 amd64 0.2.10-7 [17.8 kB]
+Get:69 http://archive.ubuntu.com/ubuntu bionic/main amd64 libthai0 amd64 0.1.27-2 [18.0 kB]
+Get:70 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libpango-1.0-0 amd64 1.40.14-1ubuntu0.1 [153 kB]
+Get:71 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libpangoft2-1.0-0 amd64 1.40.14-1ubuntu0.1 [33.2 kB]
+Get:72 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libpangocairo-1.0-0 amd64 1.40.14-1ubuntu0.1 [20.8 kB]
+Get:73 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 librsvg2-2 amd64 2.40.20-2ubuntu0.2 [98.6 kB]
+Get:74 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 librsvg2-common amd64 2.40.20-2ubuntu0.2 [5064 B]
+Get:75 http://archive.ubuntu.com/ubuntu bionic/main amd64 humanity-icon-theme all 0.6.15 [1250 kB]
+Get:76 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 ubuntu-mono all 16.10+18.04.20181005-0ubuntu1 [149 kB]
+Get:77 http://archive.ubuntu.com/ubuntu bionic/main amd64 adwaita-icon-theme all 3.28.0-1ubuntu1 [3306 kB]
+Get:78 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 curl amd64 7.58.0-2ubuntu3.24 [159 kB]
+Get:79 http://archive.ubuntu.com/ubuntu bionic/main amd64 libdconf1 amd64 0.26.0-2ubuntu3 [33.1 kB]
+Get:80 http://archive.ubuntu.com/ubuntu bionic/main amd64 dconf-service amd64 0.26.0-2ubuntu3 [28.4 kB]
+Get:81 http://archive.ubuntu.com/ubuntu bionic/main amd64 dconf-gsettings-backend amd64 0.26.0-2ubuntu3 [20.0 kB]
+Get:82 http://archive.ubuntu.com/ubuntu bionic/main amd64 fonts-noto-mono all 20171026-2 [75.5 kB]
+Get:83 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libcupsimage2 amd64 2.2.7-1ubuntu2.9 [18.6 kB]
+Get:84 http://archive.ubuntu.com/ubuntu bionic/main amd64 libijs-0.35 amd64 0.35-13 [15.5 kB]
+Get:85 http://archive.ubuntu.com/ubuntu bionic/main amd64 libjbig2dec0 amd64 0.13-6 [55.9 kB]
+Get:86 http://archive.ubuntu.com/ubuntu bionic/main amd64 libpaper1 amd64 1.1.24+nmu5ubuntu1 [13.6 kB]
+Get:87 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgs9-common all 9.26~dfsg+0-0ubuntu0.18.04.18 [5092 kB]
+Get:88 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgs9 amd64 9.26~dfsg+0-0ubuntu0.18.04.18 [2264 kB]
+Get:89 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 ghostscript amd64 9.26~dfsg+0-0ubuntu0.18.04.18 [51.2 kB]
+Get:90 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libcurl3-gnutls amd64 7.58.0-2ubuntu3.24 [219 kB]
+Get:91 http://archive.ubuntu.com/ubuntu bionic/main amd64 liberror-perl all 0.17025-1 [22.8 kB]
+Get:92 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 git-man all 1:2.17.1-1ubuntu0.18 [804 kB]
+Get:93 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 git amd64 1:2.17.1-1ubuntu0.18 [3990 kB]
+Get:94 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libproxy1v5 amd64 0.4.15-1ubuntu0.2 [48.7 kB]
+Get:95 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 glib-networking-common all 2.56.0-1ubuntu0.1 [3476 B]
+Get:96 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 glib-networking-services amd64 2.56.0-1ubuntu0.1 [8632 B]
+Get:97 http://archive.ubuntu.com/ubuntu bionic/main amd64 gsettings-desktop-schemas all 3.28.0-1ubuntu1 [27.8 kB]
+Get:98 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 glib-networking amd64 2.56.0-1ubuntu0.1 [56.7 kB]
+Get:99 http://archive.ubuntu.com/ubuntu bionic/universe amd64 aglfn all 1.7-3 [29.4 kB]
+Get:100 http://archive.ubuntu.com/ubuntu bionic/universe amd64 gnuplot-data all 5.2.2+dfsg1-2ubuntu1 [56.7 kB]
+Get:101 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libwebp6 amd64 0.6.1-2ubuntu0.18.04.2 [186 kB]
+Get:102 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgd3 amd64 2.2.5-4ubuntu0.5 [119 kB]
+Get:103 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 liblua5.3-0 amd64 5.3.3-1ubuntu0.18.04.1 [115 kB]
+Get:104 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libqt5printsupport5 amd64 5.9.5+dfsg-0ubuntu2.6 [178 kB]
+Get:105 http://archive.ubuntu.com/ubuntu bionic/universe amd64 libwxbase3.0-0v5 amd64 3.0.4+dfsg-3 [954 kB]
+Get:106 http://archive.ubuntu.com/ubuntu bionic/main amd64 libgtk2.0-common all 2.24.32-1ubuntu1 [125 kB]
+Get:107 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxcursor1 amd64 1:1.1.15-1 [19.8 kB]
+Get:108 http://archive.ubuntu.com/ubuntu bionic/main amd64 libgtk2.0-0 amd64 2.24.32-1ubuntu1 [1769 kB]
+Get:109 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libnotify4 amd64 0.7.7-3ubuntu0.18.04.1 [18.7 kB]
+Get:110 http://archive.ubuntu.com/ubuntu bionic/universe amd64 libwxgtk3.0-0v5 amd64 3.0.4+dfsg-3 [4182 kB]
+Get:111 http://archive.ubuntu.com/ubuntu bionic/universe amd64 gnuplot-qt amd64 5.2.2+dfsg1-2ubuntu1 [1013 kB]
+Get:112 http://archive.ubuntu.com/ubuntu bionic/universe amd64 gnuplot all 5.2.2+dfsg1-2ubuntu1 [3816 B]
+Get:113 http://archive.ubuntu.com/ubuntu bionic/universe amd64 groff amd64 1.22.3-10 [3150 kB]
+Get:114 http://archive.ubuntu.com/ubuntu bionic/main amd64 gsfonts all 1:8.11+urwcyr1.0.7~pre44-4.4 [3120 kB]
+Get:115 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 imagemagick-6.q16 amd64 8:6.9.7.4+dfsg-16ubuntu6.15 [423 kB]
+Get:116 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 imagemagick amd64 8:6.9.7.4+dfsg-16ubuntu6.15 [14.2 kB]
+Get:117 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libcairo-gobject2 amd64 1.15.10-2ubuntu0.1 [17.1 kB]
+Get:118 http://archive.ubuntu.com/ubuntu bionic/main amd64 libcolord2 amd64 1.3.3-2build1 [107 kB]
+Get:119 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libcupsfilters1 amd64 1.20.2-0ubuntu3.3 [109 kB]
+Get:120 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libdjvulibre-text all 3.5.27.1-8ubuntu0.4 [49.4 kB]
+Get:121 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libdjvulibre21 amd64 3.5.27.1-8ubuntu0.4 [561 kB]
+Get:122 http://archive.ubuntu.com/ubuntu bionic/main amd64 libepoxy0 amd64 1.4.3-1 [181 kB]
+Get:123 http://archive.ubuntu.com/ubuntu bionic/main amd64 libgail18 amd64 2.24.32-1ubuntu1 [14.2 kB]
+Get:124 http://archive.ubuntu.com/ubuntu bionic/main amd64 libgail-common amd64 2.24.32-1ubuntu1 [112 kB]
+Get:125 http://archive.ubuntu.com/ubuntu bionic/main amd64 libgdk-pixbuf2.0-bin amd64 2.36.11-2 [7864 B]
+Get:126 http://archive.ubuntu.com/ubuntu bionic/main amd64 libgpm2 amd64 1.20.7-5 [15.1 kB]
+Get:127 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgtk-3-common all 3.22.30-1ubuntu4 [229 kB]
+Get:128 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libjson-glib-1.0-common all 1.4.2-3ubuntu0.18.04.1 [3480 B]
+Get:129 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libjson-glib-1.0-0 amd64 1.4.2-3ubuntu0.18.04.1 [58.4 kB]
+Get:130 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libsoup2.4-1 amd64 2.62.1-1ubuntu0.4 [292 kB]
+Get:131 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libsoup-gnome2.4-1 amd64 2.62.1-1ubuntu0.4 [5088 B]
+Get:132 http://archive.ubuntu.com/ubuntu bionic/main amd64 librest-0.7-0 amd64 0.8.0-2 [31.8 kB]
+Get:133 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libwayland-cursor0 amd64 1.16.0-1ubuntu1.1~18.04.4 [10.2 kB]
+Get:134 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libwayland-egl1 amd64 1.16.0-1ubuntu1.1~18.04.4 [5424 B]
+Get:135 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgtk-3-0 amd64 3.22.30-1ubuntu4 [2503 kB]
+Get:136 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgtk-3-bin amd64 3.22.30-1ubuntu4 [57.4 kB]
+Get:137 http://archive.ubuntu.com/ubuntu bionic/main amd64 libgtk2.0-bin amd64 2.24.32-1ubuntu1 [7536 B]
+Get:138 http://archive.ubuntu.com/ubuntu bionic/main amd64 libilmbase12 amd64 2.2.0-11ubuntu2 [71.4 kB]
+Get:139 http://archive.ubuntu.com/ubuntu bionic/main amd64 libltdl-dev amd64 2.4.6-2 [162 kB]
+Get:140 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libopenexr22 amd64 2.2.0-11.1ubuntu1.9 [559 kB]
+Get:141 http://archive.ubuntu.com/ubuntu bionic/main amd64 libwmf0.2-7 amd64 0.2.8.4-12 [150 kB]
+Get:142 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libmagickcore-6.q16-3-extra amd64 8:6.9.7.4+dfsg-16ubuntu6.15 [62.4 kB]
+Get:143 http://archive.ubuntu.com/ubuntu bionic/main amd64 libnetpbm10 amd64 2:10.0-15.3build1 [58.0 kB]
+Get:144 http://archive.ubuntu.com/ubuntu bionic/main amd64 libpaper-utils amd64 1.1.24+nmu5ubuntu1 [8170 B]
+Get:145 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libpython3.6 amd64 3.6.9-1~18.04ubuntu1.12 [1414 kB]
+Get:146 http://archive.ubuntu.com/ubuntu bionic/main amd64 libtool all 2.4.6-2 [194 kB]
+Get:147 http://archive.ubuntu.com/ubuntu bionic/main amd64 libwacom-bin amd64 0.29-1 [4712 B]
+Get:148 http://archive.ubuntu.com/ubuntu bionic/main amd64 netpbm amd64 2:10.0-15.3build1 [1017 kB]
+Get:149 http://archive.ubuntu.com/ubuntu bionic/main amd64 notification-daemon amd64 3.20.0-3 [36.9 kB]
+Get:150 http://archive.ubuntu.com/ubuntu bionic/universe amd64 psutils amd64 1.17.dfsg-4 [56.2 kB]
+Get:151 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 qt5-gtk-platformtheme amd64 5.9.5+dfsg-0ubuntu2.6 [117 kB]
+Get:152 http://archive.ubuntu.com/ubuntu bionic/main amd64 qttranslations5-l10n all 5.9.5-0ubuntu1 [1485 kB]
+Get:153 http://archive.ubuntu.com/ubuntu bionic/universe amd64 tabix amd64 1.7-2 [326 kB]
+Get:154 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 vim-runtime all 2:8.0.1453-1ubuntu1.13 [5439 kB]
+Get:155 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 vim amd64 2:8.0.1453-1ubuntu1.13 [1156 kB]
+[91mdebconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+[0m[91mdebconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+[0m[91mdpkg-preconfigure: unable to re-open stdin: 
+[0mFetched 72.4 MB in 5s (14.0 MB/s)
+Selecting previously unselected package fontconfig.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 16041 files and directories currently installed.)
+Preparing to unpack .../000-fontconfig_2.12.6-0ubuntu2_amd64.deb ...
+Unpacking fontconfig (2.12.6-0ubuntu2) ...
+Selecting previously unselected package fonts-droid-fallback.
+Preparing to unpack .../001-fonts-droid-fallback_1%3a6.0.1r16-1.1_all.deb ...
+Unpacking fonts-droid-fallback (1:6.0.1r16-1.1) ...
+Selecting previously unselected package libfftw3-double3:amd64.
+Preparing to unpack .../002-libfftw3-double3_3.3.7-1_amd64.deb ...
+Unpacking libfftw3-double3:amd64 (3.3.7-1) ...
+Selecting previously unselected package libjbig0:amd64.
+Preparing to unpack .../003-libjbig0_2.1-3.1ubuntu0.18.04.1_amd64.deb ...
+Unpacking libjbig0:amd64 (2.1-3.1ubuntu0.18.04.1) ...
+Selecting previously unselected package liblqr-1-0:amd64.
+Preparing to unpack .../004-liblqr-1-0_0.4.2-2.1_amd64.deb ...
+Unpacking liblqr-1-0:amd64 (0.4.2-2.1) ...
+Selecting previously unselected package libltdl7:amd64.
+Preparing to unpack .../005-libltdl7_2.4.6-2_amd64.deb ...
+Unpacking libltdl7:amd64 (2.4.6-2) ...
+Selecting previously unselected package libtiff5:amd64.
+Preparing to unpack .../006-libtiff5_4.0.9-5ubuntu0.10_amd64.deb ...
+Unpacking libtiff5:amd64 (4.0.9-5ubuntu0.10) ...
+Selecting previously unselected package imagemagick-6-common.
+Preparing to unpack .../007-imagemagick-6-common_8%3a6.9.7.4+dfsg-16ubuntu6.15_all.deb ...
+Unpacking imagemagick-6-common (8:6.9.7.4+dfsg-16ubuntu6.15) ...
+Selecting previously unselected package libmagickcore-6.q16-3:amd64.
+Preparing to unpack .../008-libmagickcore-6.q16-3_8%3a6.9.7.4+dfsg-16ubuntu6.15_amd64.deb ...
+Unpacking libmagickcore-6.q16-3:amd64 (8:6.9.7.4+dfsg-16ubuntu6.15) ...
+Selecting previously unselected package libmagickwand-6.q16-3:amd64.
+Preparing to unpack .../009-libmagickwand-6.q16-3_8%3a6.9.7.4+dfsg-16ubuntu6.15_amd64.deb ...
+Unpacking libmagickwand-6.q16-3:amd64 (8:6.9.7.4+dfsg-16ubuntu6.15) ...
+Selecting previously unselected package libdouble-conversion1:amd64.
+Preparing to unpack .../010-libdouble-conversion1_2.0.1-4ubuntu1_amd64.deb ...
+Unpacking libdouble-conversion1:amd64 (2.0.1-4ubuntu1) ...
+Selecting previously unselected package libqt5core5a:amd64.
+Preparing to unpack .../011-libqt5core5a_5.9.5+dfsg-0ubuntu2.6_amd64.deb ...
+Unpacking libqt5core5a:amd64 (5.9.5+dfsg-0ubuntu2.6) ...
+Selecting previously unselected package libwayland-server0:amd64.
+Preparing to unpack .../012-libwayland-server0_1.16.0-1ubuntu1.1~18.04.4_amd64.deb ...
+Unpacking libwayland-server0:amd64 (1.16.0-1ubuntu1.1~18.04.4) ...
+Selecting previously unselected package libgbm1:amd64.
+Preparing to unpack .../013-libgbm1_20.0.8-0ubuntu1~18.04.1_amd64.deb ...
+Unpacking libgbm1:amd64 (20.0.8-0ubuntu1~18.04.1) ...
+Selecting previously unselected package libwayland-client0:amd64.
+Preparing to unpack .../014-libwayland-client0_1.16.0-1ubuntu1.1~18.04.4_amd64.deb ...
+Unpacking libwayland-client0:amd64 (1.16.0-1ubuntu1.1~18.04.4) ...
+Selecting previously unselected package libxcb-xfixes0:amd64.
+Preparing to unpack .../015-libxcb-xfixes0_1.13-2~ubuntu18.04_amd64.deb ...
+Unpacking libxcb-xfixes0:amd64 (1.13-2~ubuntu18.04) ...
+Selecting previously unselected package libegl-mesa0:amd64.
+Preparing to unpack .../016-libegl-mesa0_20.0.8-0ubuntu1~18.04.1_amd64.deb ...
+Unpacking libegl-mesa0:amd64 (20.0.8-0ubuntu1~18.04.1) ...
+Selecting previously unselected package libegl1:amd64.
+Preparing to unpack .../017-libegl1_1.0.0-2ubuntu2.3_amd64.deb ...
+Unpacking libegl1:amd64 (1.0.0-2ubuntu2.3) ...
+Selecting previously unselected package libevdev2:amd64.
+Preparing to unpack .../018-libevdev2_1.5.8+dfsg-1ubuntu0.2_amd64.deb ...
+Unpacking libevdev2:amd64 (1.5.8+dfsg-1ubuntu0.2) ...
+Selecting previously unselected package libmtdev1:amd64.
+Preparing to unpack .../019-libmtdev1_1.1.5-1ubuntu3_amd64.deb ...
+Unpacking libmtdev1:amd64 (1.1.5-1ubuntu3) ...
+Selecting previously unselected package libgudev-1.0-0:amd64.
+Preparing to unpack .../020-libgudev-1.0-0_1%3a232-2_amd64.deb ...
+Unpacking libgudev-1.0-0:amd64 (1:232-2) ...
+Selecting previously unselected package libwacom-common.
+Preparing to unpack .../021-libwacom-common_0.29-1_all.deb ...
+Unpacking libwacom-common (0.29-1) ...
+Selecting previously unselected package libwacom2:amd64.
+Preparing to unpack .../022-libwacom2_0.29-1_amd64.deb ...
+Unpacking libwacom2:amd64 (0.29-1) ...
+Selecting previously unselected package libinput-bin.
+Preparing to unpack .../023-libinput-bin_1.10.4-1ubuntu0.18.04.3_amd64.deb ...
+Unpacking libinput-bin (1.10.4-1ubuntu0.18.04.3) ...
+Selecting previously unselected package libinput10:amd64.
+Preparing to unpack .../024-libinput10_1.10.4-1ubuntu0.18.04.3_amd64.deb ...
+Unpacking libinput10:amd64 (1.10.4-1ubuntu0.18.04.3) ...
+Selecting previously unselected package libqt5dbus5:amd64.
+Preparing to unpack .../025-libqt5dbus5_5.9.5+dfsg-0ubuntu2.6_amd64.deb ...
+Unpacking libqt5dbus5:amd64 (5.9.5+dfsg-0ubuntu2.6) ...
+Selecting previously unselected package libqt5network5:amd64.
+Preparing to unpack .../026-libqt5network5_5.9.5+dfsg-0ubuntu2.6_amd64.deb ...
+Unpacking libqt5network5:amd64 (5.9.5+dfsg-0ubuntu2.6) ...
+Selecting previously unselected package libxcb-icccm4:amd64.
+Preparing to unpack .../027-libxcb-icccm4_0.4.1-1ubuntu1_amd64.deb ...
+Unpacking libxcb-icccm4:amd64 (0.4.1-1ubuntu1) ...
+Selecting previously unselected package libxcb-shm0:amd64.
+Preparing to unpack .../028-libxcb-shm0_1.13-2~ubuntu18.04_amd64.deb ...
+Unpacking libxcb-shm0:amd64 (1.13-2~ubuntu18.04) ...
+Selecting previously unselected package libxcb-util1:amd64.
+Preparing to unpack .../029-libxcb-util1_0.4.0-0ubuntu3_amd64.deb ...
+Unpacking libxcb-util1:amd64 (0.4.0-0ubuntu3) ...
+Selecting previously unselected package libxcb-image0:amd64.
+Preparing to unpack .../030-libxcb-image0_0.4.0-1build1_amd64.deb ...
+Unpacking libxcb-image0:amd64 (0.4.0-1build1) ...
+Selecting previously unselected package libxcb-keysyms1:amd64.
+Preparing to unpack .../031-libxcb-keysyms1_0.4.0-1_amd64.deb ...
+Unpacking libxcb-keysyms1:amd64 (0.4.0-1) ...
+Selecting previously unselected package libxcb-randr0:amd64.
+Preparing to unpack .../032-libxcb-randr0_1.13-2~ubuntu18.04_amd64.deb ...
+Unpacking libxcb-randr0:amd64 (1.13-2~ubuntu18.04) ...
+Selecting previously unselected package libxcb-render0:amd64.
+Preparing to unpack .../033-libxcb-render0_1.13-2~ubuntu18.04_amd64.deb ...
+Unpacking libxcb-render0:amd64 (1.13-2~ubuntu18.04) ...
+Selecting previously unselected package libxcb-render-util0:amd64.
+Preparing to unpack .../034-libxcb-render-util0_0.3.9-1_amd64.deb ...
+Unpacking libxcb-render-util0:amd64 (0.3.9-1) ...
+Selecting previously unselected package libxcb-xinerama0:amd64.
+Preparing to unpack .../035-libxcb-xinerama0_1.13-2~ubuntu18.04_amd64.deb ...
+Unpacking libxcb-xinerama0:amd64 (1.13-2~ubuntu18.04) ...
+Selecting previously unselected package libxcb-xkb1:amd64.
+Preparing to unpack .../036-libxcb-xkb1_1.13-2~ubuntu18.04_amd64.deb ...
+Unpacking libxcb-xkb1:amd64 (1.13-2~ubuntu18.04) ...
+Selecting previously unselected package xkb-data.
+Preparing to unpack .../037-xkb-data_2.23.1-1ubuntu1.18.04.1_all.deb ...
+Unpacking xkb-data (2.23.1-1ubuntu1.18.04.1) ...
+Selecting previously unselected package libxkbcommon0:amd64.
+Preparing to unpack .../038-libxkbcommon0_0.8.2-1~ubuntu18.04.1_amd64.deb ...
+Unpacking libxkbcommon0:amd64 (0.8.2-1~ubuntu18.04.1) ...
+Selecting previously unselected package libxkbcommon-x11-0:amd64.
+Preparing to unpack .../039-libxkbcommon-x11-0_0.8.2-1~ubuntu18.04.1_amd64.deb ...
+Unpacking libxkbcommon-x11-0:amd64 (0.8.2-1~ubuntu18.04.1) ...
+Selecting previously unselected package libqt5gui5:amd64.
+Preparing to unpack .../040-libqt5gui5_5.9.5+dfsg-0ubuntu2.6_amd64.deb ...
+Unpacking libqt5gui5:amd64 (5.9.5+dfsg-0ubuntu2.6) ...
+Selecting previously unselected package libqt5widgets5:amd64.
+Preparing to unpack .../041-libqt5widgets5_5.9.5+dfsg-0ubuntu2.6_amd64.deb ...
+Unpacking libqt5widgets5:amd64 (5.9.5+dfsg-0ubuntu2.6) ...
+Selecting previously unselected package libqt5svg5:amd64.
+Preparing to unpack .../042-libqt5svg5_5.9.5-0ubuntu1.1_amd64.deb ...
+Unpacking libqt5svg5:amd64 (5.9.5-0ubuntu1.1) ...
+Selecting previously unselected package poppler-data.
+Preparing to unpack .../043-poppler-data_0.4.8-2_all.deb ...
+Unpacking poppler-data (0.4.8-2) ...
+Selecting previously unselected package libmagic-mgc.
+Preparing to unpack .../044-libmagic-mgc_1%3a5.32-2ubuntu0.4_amd64.deb ...
+Unpacking libmagic-mgc (1:5.32-2ubuntu0.4) ...
+Selecting previously unselected package libmagic1:amd64.
+Preparing to unpack .../045-libmagic1_1%3a5.32-2ubuntu0.4_amd64.deb ...
+Unpacking libmagic1:amd64 (1:5.32-2ubuntu0.4) ...
+Selecting previously unselected package file.
+Preparing to unpack .../046-file_1%3a5.32-2ubuntu0.4_amd64.deb ...
+Unpacking file (1:5.32-2ubuntu0.4) ...
+Selecting previously unselected package less.
+Preparing to unpack .../047-less_487-0.1_amd64.deb ...
+Unpacking less (487-0.1) ...
+Selecting previously unselected package libidn11:amd64.
+Preparing to unpack .../048-libidn11_1.33-2.1ubuntu1.2_amd64.deb ...
+Unpacking libidn11:amd64 (1.33-2.1ubuntu1.2) ...
+Selecting previously unselected package libmpdec2:amd64.
+Preparing to unpack .../049-libmpdec2_2.4.2-1ubuntu1_amd64.deb ...
+Unpacking libmpdec2:amd64 (2.4.2-1ubuntu1) ...
+Selecting previously unselected package libpython3.6-minimal:amd64.
+Preparing to unpack .../050-libpython3.6-minimal_3.6.9-1~18.04ubuntu1.12_amd64.deb ...
+Unpacking libpython3.6-minimal:amd64 (3.6.9-1~18.04ubuntu1.12) ...
+Selecting previously unselected package mime-support.
+Preparing to unpack .../051-mime-support_3.60ubuntu1_all.deb ...
+Unpacking mime-support (3.60ubuntu1) ...
+Selecting previously unselected package libpython3.6-stdlib:amd64.
+Preparing to unpack .../052-libpython3.6-stdlib_3.6.9-1~18.04ubuntu1.12_amd64.deb ...
+Unpacking libpython3.6-stdlib:amd64 (3.6.9-1~18.04ubuntu1.12) ...
+Selecting previously unselected package xxd.
+Preparing to unpack .../053-xxd_2%3a8.0.1453-1ubuntu1.13_amd64.deb ...
+Unpacking xxd (2:8.0.1453-1ubuntu1.13) ...
+Selecting previously unselected package vim-common.
+Preparing to unpack .../054-vim-common_2%3a8.0.1453-1ubuntu1.13_all.deb ...
+Unpacking vim-common (2:8.0.1453-1ubuntu1.13) ...
+Selecting previously unselected package groff-base.
+Preparing to unpack .../055-groff-base_1.22.3-10_amd64.deb ...
+Unpacking groff-base (1.22.3-10) ...
+Selecting previously unselected package libssl1.0.0:amd64.
+Preparing to unpack .../056-libssl1.0.0_1.0.2n-1ubuntu5.12_amd64.deb ...
+Unpacking libssl1.0.0:amd64 (1.0.2n-1ubuntu5.12) ...
+Selecting previously unselected package openssh-client.
+Preparing to unpack .../057-openssh-client_1%3a7.6p1-4ubuntu0.7_amd64.deb ...
+Unpacking openssh-client (1:7.6p1-4ubuntu0.7) ...
+Selecting previously unselected package xauth.
+Preparing to unpack .../058-xauth_1%3a1.0.10-1_amd64.deb ...
+Unpacking xauth (1:1.0.10-1) ...
+Selecting previously unselected package hicolor-icon-theme.
+Preparing to unpack .../059-hicolor-icon-theme_0.17-2_all.deb ...
+Unpacking hicolor-icon-theme (0.17-2) ...
+Selecting previously unselected package libgdk-pixbuf2.0-common.
+Preparing to unpack .../060-libgdk-pixbuf2.0-common_2.36.11-2_all.deb ...
+Unpacking libgdk-pixbuf2.0-common (2.36.11-2) ...
+Selecting previously unselected package libgdk-pixbuf2.0-0:amd64.
+Preparing to unpack .../061-libgdk-pixbuf2.0-0_2.36.11-2_amd64.deb ...
+Unpacking libgdk-pixbuf2.0-0:amd64 (2.36.11-2) ...
+Selecting previously unselected package gtk-update-icon-cache.
+Preparing to unpack .../062-gtk-update-icon-cache_3.22.30-1ubuntu4_amd64.deb ...
+No diversion 'diversion of /usr/sbin/update-icon-caches to /usr/sbin/update-icon-caches.gtk2 by libgtk-3-bin', none removed.
+No diversion 'diversion of /usr/share/man/man8/update-icon-caches.8.gz to /usr/share/man/man8/update-icon-caches.gtk2.8.gz by libgtk-3-bin', none removed.
+Unpacking gtk-update-icon-cache (3.22.30-1ubuntu4) ...
+Selecting previously unselected package libpixman-1-0:amd64.
+Preparing to unpack .../063-libpixman-1-0_0.34.0-2ubuntu0.1_amd64.deb ...
+Unpacking libpixman-1-0:amd64 (0.34.0-2ubuntu0.1) ...
+Selecting previously unselected package libcairo2:amd64.
+Preparing to unpack .../064-libcairo2_1.15.10-2ubuntu0.1_amd64.deb ...
+Unpacking libcairo2:amd64 (1.15.10-2ubuntu0.1) ...
+Selecting previously unselected package libcroco3:amd64.
+Preparing to unpack .../065-libcroco3_0.6.12-2_amd64.deb ...
+Unpacking libcroco3:amd64 (0.6.12-2) ...
+Selecting previously unselected package libthai-data.
+Preparing to unpack .../066-libthai-data_0.1.27-2_all.deb ...
+Unpacking libthai-data (0.1.27-2) ...
+Selecting previously unselected package libdatrie1:amd64.
+Preparing to unpack .../067-libdatrie1_0.2.10-7_amd64.deb ...
+Unpacking libdatrie1:amd64 (0.2.10-7) ...
+Selecting previously unselected package libthai0:amd64.
+Preparing to unpack .../068-libthai0_0.1.27-2_amd64.deb ...
+Unpacking libthai0:amd64 (0.1.27-2) ...
+Selecting previously unselected package libpango-1.0-0:amd64.
+Preparing to unpack .../069-libpango-1.0-0_1.40.14-1ubuntu0.1_amd64.deb ...
+Unpacking libpango-1.0-0:amd64 (1.40.14-1ubuntu0.1) ...
+Selecting previously unselected package libpangoft2-1.0-0:amd64.
+Preparing to unpack .../070-libpangoft2-1.0-0_1.40.14-1ubuntu0.1_amd64.deb ...
+Unpacking libpangoft2-1.0-0:amd64 (1.40.14-1ubuntu0.1) ...
+Selecting previously unselected package libpangocairo-1.0-0:amd64.
+Preparing to unpack .../071-libpangocairo-1.0-0_1.40.14-1ubuntu0.1_amd64.deb ...
+Unpacking libpangocairo-1.0-0:amd64 (1.40.14-1ubuntu0.1) ...
+Selecting previously unselected package librsvg2-2:amd64.
+Preparing to unpack .../072-librsvg2-2_2.40.20-2ubuntu0.2_amd64.deb ...
+Unpacking librsvg2-2:amd64 (2.40.20-2ubuntu0.2) ...
+Selecting previously unselected package librsvg2-common:amd64.
+Preparing to unpack .../073-librsvg2-common_2.40.20-2ubuntu0.2_amd64.deb ...
+Unpacking librsvg2-common:amd64 (2.40.20-2ubuntu0.2) ...
+Selecting previously unselected package humanity-icon-theme.
+Preparing to unpack .../074-humanity-icon-theme_0.6.15_all.deb ...
+Unpacking humanity-icon-theme (0.6.15) ...
+Selecting previously unselected package ubuntu-mono.
+Preparing to unpack .../075-ubuntu-mono_16.10+18.04.20181005-0ubuntu1_all.deb ...
+Unpacking ubuntu-mono (16.10+18.04.20181005-0ubuntu1) ...
+Selecting previously unselected package adwaita-icon-theme.
+Preparing to unpack .../076-adwaita-icon-theme_3.28.0-1ubuntu1_all.deb ...
+Unpacking adwaita-icon-theme (3.28.0-1ubuntu1) ...
+Selecting previously unselected package curl.
+Preparing to unpack .../077-curl_7.58.0-2ubuntu3.24_amd64.deb ...
+Unpacking curl (7.58.0-2ubuntu3.24) ...
+Selecting previously unselected package libdconf1:amd64.
+Preparing to unpack .../078-libdconf1_0.26.0-2ubuntu3_amd64.deb ...
+Unpacking libdconf1:amd64 (0.26.0-2ubuntu3) ...
+Selecting previously unselected package dconf-service.
+Preparing to unpack .../079-dconf-service_0.26.0-2ubuntu3_amd64.deb ...
+Unpacking dconf-service (0.26.0-2ubuntu3) ...
+Selecting previously unselected package dconf-gsettings-backend:amd64.
+Preparing to unpack .../080-dconf-gsettings-backend_0.26.0-2ubuntu3_amd64.deb ...
+Unpacking dconf-gsettings-backend:amd64 (0.26.0-2ubuntu3) ...
+Selecting previously unselected package fonts-noto-mono.
+Preparing to unpack .../081-fonts-noto-mono_20171026-2_all.deb ...
+Unpacking fonts-noto-mono (20171026-2) ...
+Selecting previously unselected package libcupsimage2:amd64.
+Preparing to unpack .../082-libcupsimage2_2.2.7-1ubuntu2.9_amd64.deb ...
+Unpacking libcupsimage2:amd64 (2.2.7-1ubuntu2.9) ...
+Selecting previously unselected package libijs-0.35:amd64.
+Preparing to unpack .../083-libijs-0.35_0.35-13_amd64.deb ...
+Unpacking libijs-0.35:amd64 (0.35-13) ...
+Selecting previously unselected package libjbig2dec0:amd64.
+Preparing to unpack .../084-libjbig2dec0_0.13-6_amd64.deb ...
+Unpacking libjbig2dec0:amd64 (0.13-6) ...
+Selecting previously unselected package libpaper1:amd64.
+Preparing to unpack .../085-libpaper1_1.1.24+nmu5ubuntu1_amd64.deb ...
+Unpacking libpaper1:amd64 (1.1.24+nmu5ubuntu1) ...
+Selecting previously unselected package libgs9-common.
+Preparing to unpack .../086-libgs9-common_9.26~dfsg+0-0ubuntu0.18.04.18_all.deb ...
+Unpacking libgs9-common (9.26~dfsg+0-0ubuntu0.18.04.18) ...
+Selecting previously unselected package libgs9:amd64.
+Preparing to unpack .../087-libgs9_9.26~dfsg+0-0ubuntu0.18.04.18_amd64.deb ...
+Unpacking libgs9:amd64 (9.26~dfsg+0-0ubuntu0.18.04.18) ...
+Selecting previously unselected package ghostscript.
+Preparing to unpack .../088-ghostscript_9.26~dfsg+0-0ubuntu0.18.04.18_amd64.deb ...
+Unpacking ghostscript (9.26~dfsg+0-0ubuntu0.18.04.18) ...
+Selecting previously unselected package libcurl3-gnutls:amd64.
+Preparing to unpack .../089-libcurl3-gnutls_7.58.0-2ubuntu3.24_amd64.deb ...
+Unpacking libcurl3-gnutls:amd64 (7.58.0-2ubuntu3.24) ...
+Selecting previously unselected package liberror-perl.
+Preparing to unpack .../090-liberror-perl_0.17025-1_all.deb ...
+Unpacking liberror-perl (0.17025-1) ...
+Selecting previously unselected package git-man.
+Preparing to unpack .../091-git-man_1%3a2.17.1-1ubuntu0.18_all.deb ...
+Unpacking git-man (1:2.17.1-1ubuntu0.18) ...
+Selecting previously unselected package git.
+Preparing to unpack .../092-git_1%3a2.17.1-1ubuntu0.18_amd64.deb ...
+Unpacking git (1:2.17.1-1ubuntu0.18) ...
+Selecting previously unselected package libproxy1v5:amd64.
+Preparing to unpack .../093-libproxy1v5_0.4.15-1ubuntu0.2_amd64.deb ...
+Unpacking libproxy1v5:amd64 (0.4.15-1ubuntu0.2) ...
+Selecting previously unselected package glib-networking-common.
+Preparing to unpack .../094-glib-networking-common_2.56.0-1ubuntu0.1_all.deb ...
+Unpacking glib-networking-common (2.56.0-1ubuntu0.1) ...
+Selecting previously unselected package glib-networking-services.
+Preparing to unpack .../095-glib-networking-services_2.56.0-1ubuntu0.1_amd64.deb ...
+Unpacking glib-networking-services (2.56.0-1ubuntu0.1) ...
+Selecting previously unselected package gsettings-desktop-schemas.
+Preparing to unpack .../096-gsettings-desktop-schemas_3.28.0-1ubuntu1_all.deb ...
+Unpacking gsettings-desktop-schemas (3.28.0-1ubuntu1) ...
+Selecting previously unselected package glib-networking:amd64.
+Preparing to unpack .../097-glib-networking_2.56.0-1ubuntu0.1_amd64.deb ...
+Unpacking glib-networking:amd64 (2.56.0-1ubuntu0.1) ...
+Selecting previously unselected package aglfn.
+Preparing to unpack .../098-aglfn_1.7-3_all.deb ...
+Unpacking aglfn (1.7-3) ...
+Selecting previously unselected package gnuplot-data.
+Preparing to unpack .../099-gnuplot-data_5.2.2+dfsg1-2ubuntu1_all.deb ...
+Unpacking gnuplot-data (5.2.2+dfsg1-2ubuntu1) ...
+Selecting previously unselected package libwebp6:amd64.
+Preparing to unpack .../100-libwebp6_0.6.1-2ubuntu0.18.04.2_amd64.deb ...
+Unpacking libwebp6:amd64 (0.6.1-2ubuntu0.18.04.2) ...
+Selecting previously unselected package libgd3:amd64.
+Preparing to unpack .../101-libgd3_2.2.5-4ubuntu0.5_amd64.deb ...
+Unpacking libgd3:amd64 (2.2.5-4ubuntu0.5) ...
+Selecting previously unselected package liblua5.3-0:amd64.
+Preparing to unpack .../102-liblua5.3-0_5.3.3-1ubuntu0.18.04.1_amd64.deb ...
+Unpacking liblua5.3-0:amd64 (5.3.3-1ubuntu0.18.04.1) ...
+Selecting previously unselected package libqt5printsupport5:amd64.
+Preparing to unpack .../103-libqt5printsupport5_5.9.5+dfsg-0ubuntu2.6_amd64.deb ...
+Unpacking libqt5printsupport5:amd64 (5.9.5+dfsg-0ubuntu2.6) ...
+Selecting previously unselected package libwxbase3.0-0v5:amd64.
+Preparing to unpack .../104-libwxbase3.0-0v5_3.0.4+dfsg-3_amd64.deb ...
+Unpacking libwxbase3.0-0v5:amd64 (3.0.4+dfsg-3) ...
+Selecting previously unselected package libgtk2.0-common.
+Preparing to unpack .../105-libgtk2.0-common_2.24.32-1ubuntu1_all.deb ...
+Unpacking libgtk2.0-common (2.24.32-1ubuntu1) ...
+Selecting previously unselected package libxcursor1:amd64.
+Preparing to unpack .../106-libxcursor1_1%3a1.1.15-1_amd64.deb ...
+Unpacking libxcursor1:amd64 (1:1.1.15-1) ...
+Selecting previously unselected package libgtk2.0-0:amd64.
+Preparing to unpack .../107-libgtk2.0-0_2.24.32-1ubuntu1_amd64.deb ...
+Unpacking libgtk2.0-0:amd64 (2.24.32-1ubuntu1) ...
+Selecting previously unselected package libnotify4:amd64.
+Preparing to unpack .../108-libnotify4_0.7.7-3ubuntu0.18.04.1_amd64.deb ...
+Unpacking libnotify4:amd64 (0.7.7-3ubuntu0.18.04.1) ...
+Selecting previously unselected package libwxgtk3.0-0v5:amd64.
+Preparing to unpack .../109-libwxgtk3.0-0v5_3.0.4+dfsg-3_amd64.deb ...
+Unpacking libwxgtk3.0-0v5:amd64 (3.0.4+dfsg-3) ...
+Selecting previously unselected package gnuplot-qt.
+Preparing to unpack .../110-gnuplot-qt_5.2.2+dfsg1-2ubuntu1_amd64.deb ...
+Unpacking gnuplot-qt (5.2.2+dfsg1-2ubuntu1) ...
+Selecting previously unselected package gnuplot.
+Preparing to unpack .../111-gnuplot_5.2.2+dfsg1-2ubuntu1_all.deb ...
+Unpacking gnuplot (5.2.2+dfsg1-2ubuntu1) ...
+Selecting previously unselected package groff.
+Preparing to unpack .../112-groff_1.22.3-10_amd64.deb ...
+Unpacking groff (1.22.3-10) ...
+Selecting previously unselected package gsfonts.
+Preparing to unpack .../113-gsfonts_1%3a8.11+urwcyr1.0.7~pre44-4.4_all.deb ...
+Unpacking gsfonts (1:8.11+urwcyr1.0.7~pre44-4.4) ...
+Selecting previously unselected package imagemagick-6.q16.
+Preparing to unpack .../114-imagemagick-6.q16_8%3a6.9.7.4+dfsg-16ubuntu6.15_amd64.deb ...
+Unpacking imagemagick-6.q16 (8:6.9.7.4+dfsg-16ubuntu6.15) ...
+Selecting previously unselected package imagemagick.
+Preparing to unpack .../115-imagemagick_8%3a6.9.7.4+dfsg-16ubuntu6.15_amd64.deb ...
+Unpacking imagemagick (8:6.9.7.4+dfsg-16ubuntu6.15) ...
+Selecting previously unselected package libcairo-gobject2:amd64.
+Preparing to unpack .../116-libcairo-gobject2_1.15.10-2ubuntu0.1_amd64.deb ...
+Unpacking libcairo-gobject2:amd64 (1.15.10-2ubuntu0.1) ...
+Selecting previously unselected package libcolord2:amd64.
+Preparing to unpack .../117-libcolord2_1.3.3-2build1_amd64.deb ...
+Unpacking libcolord2:amd64 (1.3.3-2build1) ...
+Selecting previously unselected package libcupsfilters1:amd64.
+Preparing to unpack .../118-libcupsfilters1_1.20.2-0ubuntu3.3_amd64.deb ...
+Unpacking libcupsfilters1:amd64 (1.20.2-0ubuntu3.3) ...
+Selecting previously unselected package libdjvulibre-text.
+Preparing to unpack .../119-libdjvulibre-text_3.5.27.1-8ubuntu0.4_all.deb ...
+Unpacking libdjvulibre-text (3.5.27.1-8ubuntu0.4) ...
+Selecting previously unselected package libdjvulibre21:amd64.
+Preparing to unpack .../120-libdjvulibre21_3.5.27.1-8ubuntu0.4_amd64.deb ...
+Unpacking libdjvulibre21:amd64 (3.5.27.1-8ubuntu0.4) ...
+Selecting previously unselected package libepoxy0:amd64.
+Preparing to unpack .../121-libepoxy0_1.4.3-1_amd64.deb ...
+Unpacking libepoxy0:amd64 (1.4.3-1) ...
+Selecting previously unselected package libgail18:amd64.
+Preparing to unpack .../122-libgail18_2.24.32-1ubuntu1_amd64.deb ...
+Unpacking libgail18:amd64 (2.24.32-1ubuntu1) ...
+Selecting previously unselected package libgail-common:amd64.
+Preparing to unpack .../123-libgail-common_2.24.32-1ubuntu1_amd64.deb ...
+Unpacking libgail-common:amd64 (2.24.32-1ubuntu1) ...
+Selecting previously unselected package libgdk-pixbuf2.0-bin.
+Preparing to unpack .../124-libgdk-pixbuf2.0-bin_2.36.11-2_amd64.deb ...
+Unpacking libgdk-pixbuf2.0-bin (2.36.11-2) ...
+Selecting previously unselected package libgpm2:amd64.
+Preparing to unpack .../125-libgpm2_1.20.7-5_amd64.deb ...
+Unpacking libgpm2:amd64 (1.20.7-5) ...
+Selecting previously unselected package libgtk-3-common.
+Preparing to unpack .../126-libgtk-3-common_3.22.30-1ubuntu4_all.deb ...
+Unpacking libgtk-3-common (3.22.30-1ubuntu4) ...
+Selecting previously unselected package libjson-glib-1.0-common.
+Preparing to unpack .../127-libjson-glib-1.0-common_1.4.2-3ubuntu0.18.04.1_all.deb ...
+Unpacking libjson-glib-1.0-common (1.4.2-3ubuntu0.18.04.1) ...
+Selecting previously unselected package libjson-glib-1.0-0:amd64.
+Preparing to unpack .../128-libjson-glib-1.0-0_1.4.2-3ubuntu0.18.04.1_amd64.deb ...
+Unpacking libjson-glib-1.0-0:amd64 (1.4.2-3ubuntu0.18.04.1) ...
+Selecting previously unselected package libsoup2.4-1:amd64.
+Preparing to unpack .../129-libsoup2.4-1_2.62.1-1ubuntu0.4_amd64.deb ...
+Unpacking libsoup2.4-1:amd64 (2.62.1-1ubuntu0.4) ...
+Selecting previously unselected package libsoup-gnome2.4-1:amd64.
+Preparing to unpack .../130-libsoup-gnome2.4-1_2.62.1-1ubuntu0.4_amd64.deb ...
+Unpacking libsoup-gnome2.4-1:amd64 (2.62.1-1ubuntu0.4) ...
+Selecting previously unselected package librest-0.7-0:amd64.
+Preparing to unpack .../131-librest-0.7-0_0.8.0-2_amd64.deb ...
+Unpacking librest-0.7-0:amd64 (0.8.0-2) ...
+Selecting previously unselected package libwayland-cursor0:amd64.
+Preparing to unpack .../132-libwayland-cursor0_1.16.0-1ubuntu1.1~18.04.4_amd64.deb ...
+Unpacking libwayland-cursor0:amd64 (1.16.0-1ubuntu1.1~18.04.4) ...
+Selecting previously unselected package libwayland-egl1:amd64.
+Preparing to unpack .../133-libwayland-egl1_1.16.0-1ubuntu1.1~18.04.4_amd64.deb ...
+Unpacking libwayland-egl1:amd64 (1.16.0-1ubuntu1.1~18.04.4) ...
+Selecting previously unselected package libgtk-3-0:amd64.
+Preparing to unpack .../134-libgtk-3-0_3.22.30-1ubuntu4_amd64.deb ...
+Unpacking libgtk-3-0:amd64 (3.22.30-1ubuntu4) ...
+Selecting previously unselected package libgtk-3-bin.
+Preparing to unpack .../135-libgtk-3-bin_3.22.30-1ubuntu4_amd64.deb ...
+Unpacking libgtk-3-bin (3.22.30-1ubuntu4) ...
+Selecting previously unselected package libgtk2.0-bin.
+Preparing to unpack .../136-libgtk2.0-bin_2.24.32-1ubuntu1_amd64.deb ...
+Unpacking libgtk2.0-bin (2.24.32-1ubuntu1) ...
+Selecting previously unselected package libilmbase12:amd64.
+Preparing to unpack .../137-libilmbase12_2.2.0-11ubuntu2_amd64.deb ...
+Unpacking libilmbase12:amd64 (2.2.0-11ubuntu2) ...
+Selecting previously unselected package libltdl-dev:amd64.
+Preparing to unpack .../138-libltdl-dev_2.4.6-2_amd64.deb ...
+Unpacking libltdl-dev:amd64 (2.4.6-2) ...
+Selecting previously unselected package libopenexr22:amd64.
+Preparing to unpack .../139-libopenexr22_2.2.0-11.1ubuntu1.9_amd64.deb ...
+Unpacking libopenexr22:amd64 (2.2.0-11.1ubuntu1.9) ...
+Selecting previously unselected package libwmf0.2-7:amd64.
+Preparing to unpack .../140-libwmf0.2-7_0.2.8.4-12_amd64.deb ...
+Unpacking libwmf0.2-7:amd64 (0.2.8.4-12) ...
+Selecting previously unselected package libmagickcore-6.q16-3-extra:amd64.
+Preparing to unpack .../141-libmagickcore-6.q16-3-extra_8%3a6.9.7.4+dfsg-16ubuntu6.15_amd64.deb ...
+Unpacking libmagickcore-6.q16-3-extra:amd64 (8:6.9.7.4+dfsg-16ubuntu6.15) ...
+Selecting previously unselected package libnetpbm10.
+Preparing to unpack .../142-libnetpbm10_2%3a10.0-15.3build1_amd64.deb ...
+Unpacking libnetpbm10 (2:10.0-15.3build1) ...
+Selecting previously unselected package libpaper-utils.
+Preparing to unpack .../143-libpaper-utils_1.1.24+nmu5ubuntu1_amd64.deb ...
+Unpacking libpaper-utils (1.1.24+nmu5ubuntu1) ...
+Selecting previously unselected package libpython3.6:amd64.
+Preparing to unpack .../144-libpython3.6_3.6.9-1~18.04ubuntu1.12_amd64.deb ...
+Unpacking libpython3.6:amd64 (3.6.9-1~18.04ubuntu1.12) ...
+Selecting previously unselected package libtool.
+Preparing to unpack .../145-libtool_2.4.6-2_all.deb ...
+Unpacking libtool (2.4.6-2) ...
+Selecting previously unselected package libwacom-bin.
+Preparing to unpack .../146-libwacom-bin_0.29-1_amd64.deb ...
+Unpacking libwacom-bin (0.29-1) ...
+Selecting previously unselected package netpbm.
+Preparing to unpack .../147-netpbm_2%3a10.0-15.3build1_amd64.deb ...
+Unpacking netpbm (2:10.0-15.3build1) ...
+Selecting previously unselected package notification-daemon.
+Preparing to unpack .../148-notification-daemon_3.20.0-3_amd64.deb ...
+Unpacking notification-daemon (3.20.0-3) ...
+Selecting previously unselected package psutils.
+Preparing to unpack .../149-psutils_1.17.dfsg-4_amd64.deb ...
+Unpacking psutils (1.17.dfsg-4) ...
+Selecting previously unselected package qt5-gtk-platformtheme:amd64.
+Preparing to unpack .../150-qt5-gtk-platformtheme_5.9.5+dfsg-0ubuntu2.6_amd64.deb ...
+Unpacking qt5-gtk-platformtheme:amd64 (5.9.5+dfsg-0ubuntu2.6) ...
+Selecting previously unselected package qttranslations5-l10n.
+Preparing to unpack .../151-qttranslations5-l10n_5.9.5-0ubuntu1_all.deb ...
+Unpacking qttranslations5-l10n (5.9.5-0ubuntu1) ...
+Selecting previously unselected package tabix.
+Preparing to unpack .../152-tabix_1.7-2_amd64.deb ...
+Unpacking tabix (1.7-2) ...
+Selecting previously unselected package vim-runtime.
+Preparing to unpack .../153-vim-runtime_2%3a8.0.1453-1ubuntu1.13_all.deb ...
+Adding 'diversion of /usr/share/vim/vim80/doc/help.txt to /usr/share/vim/vim80/doc/help.txt.vim-tiny by vim-runtime'
+Adding 'diversion of /usr/share/vim/vim80/doc/tags to /usr/share/vim/vim80/doc/tags.vim-tiny by vim-runtime'
+Unpacking vim-runtime (2:8.0.1453-1ubuntu1.13) ...
+Selecting previously unselected package vim.
+Preparing to unpack .../154-vim_2%3a8.0.1453-1ubuntu1.13_amd64.deb ...
+Unpacking vim (2:8.0.1453-1ubuntu1.13) ...
+Setting up libgs9-common (9.26~dfsg+0-0ubuntu0.18.04.18) ...
+Setting up libxcb-xinerama0:amd64 (1.13-2~ubuntu18.04) ...
+Setting up libpaper1:amd64 (1.1.24+nmu5ubuntu1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/papersize with new version
+Setting up imagemagick-6-common (8:6.9.7.4+dfsg-16ubuntu6.15) ...
+Setting up git-man (1:2.17.1-1ubuntu0.18) ...
+Setting up fonts-droid-fallback (1:6.0.1r16-1.1) ...
+Setting up libxcb-randr0:amd64 (1.13-2~ubuntu18.04) ...
+Setting up libpaper-utils (1.1.24+nmu5ubuntu1) ...
+Setting up less (487-0.1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Setting up libjson-glib-1.0-common (1.4.2-3ubuntu0.18.04.1) ...
+Setting up libxcb-xfixes0:amd64 (1.13-2~ubuntu18.04) ...
+Setting up libxcb-icccm4:amd64 (0.4.1-1ubuntu1) ...
+Setting up libgtk2.0-common (2.24.32-1ubuntu1) ...
+Setting up libxcb-render0:amd64 (1.13-2~ubuntu18.04) ...
+Setting up glib-networking-common (2.56.0-1ubuntu0.1) ...
+Setting up libwacom-common (0.29-1) ...
+Setting up libssl1.0.0:amd64 (1.0.2n-1ubuntu5.12) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Setting up libdouble-conversion1:amd64 (2.0.1-4ubuntu1) ...
+Setting up mime-support (3.60ubuntu1) ...
+Setting up gsfonts (1:8.11+urwcyr1.0.7~pre44-4.4) ...
+Setting up libevdev2:amd64 (1.5.8+dfsg-1ubuntu0.2) ...
+Setting up xxd (2:8.0.1453-1ubuntu1.13) ...
+Setting up liberror-perl (0.17025-1) ...
+Setting up curl (7.58.0-2ubuntu3.24) ...
+Setting up libjbig0:amd64 (2.1-3.1ubuntu0.18.04.1) ...
+Setting up libgpm2:amd64 (1.20.7-5) ...
+Setting up poppler-data (0.4.8-2) ...
+Setting up libdjvulibre-text (3.5.27.1-8ubuntu0.4) ...
+Setting up libcurl3-gnutls:amd64 (7.58.0-2ubuntu3.24) ...
+Setting up groff-base (1.22.3-10) ...
+Setting up libnetpbm10 (2:10.0-15.3build1) ...
+Setting up libwayland-client0:amd64 (1.16.0-1ubuntu1.1~18.04.4) ...
+Setting up xkb-data (2.23.1-1ubuntu1.18.04.1) ...
+Setting up libproxy1v5:amd64 (0.4.15-1ubuntu0.2) ...
+Setting up libgdk-pixbuf2.0-common (2.36.11-2) ...
+Setting up glib-networking-services (2.56.0-1ubuntu0.1) ...
+Setting up libdatrie1:amd64 (0.2.10-7) ...
+Setting up libtiff5:amd64 (4.0.9-5ubuntu0.10) ...
+Setting up libxcb-util1:amd64 (0.4.0-0ubuntu3) ...
+Setting up libfftw3-double3:amd64 (3.3.7-1) ...
+Setting up psutils (1.17.dfsg-4) ...
+Setting up libmagic-mgc (1:5.32-2ubuntu0.4) ...
+Setting up fonts-noto-mono (20171026-2) ...
+Setting up libwxbase3.0-0v5:amd64 (3.0.4+dfsg-3) ...
+Setting up libmagic1:amd64 (1:5.32-2ubuntu0.4) ...
+Setting up libjson-glib-1.0-0:amd64 (1.4.2-3ubuntu0.18.04.1) ...
+Setting up libcroco3:amd64 (0.6.12-2) ...
+Setting up libcupsfilters1:amd64 (1.20.2-0ubuntu3.3) ...
+Setting up xauth (1:1.0.10-1) ...
+Setting up libpython3.6-minimal:amd64 (3.6.9-1~18.04ubuntu1.12) ...
+Setting up libcupsimage2:amd64 (2.2.7-1ubuntu2.9) ...
+Setting up libilmbase12:amd64 (2.2.0-11ubuntu2) ...
+Setting up liblqr-1-0:amd64 (0.4.2-2.1) ...
+Setting up libjbig2dec0:amd64 (0.13-6) ...
+Setting up libpixman-1-0:amd64 (0.34.0-2ubuntu0.1) ...
+Setting up libxcursor1:amd64 (1:1.1.15-1) ...
+Setting up libepoxy0:amd64 (1.4.3-1) ...
+Setting up qttranslations5-l10n (5.9.5-0ubuntu1) ...
+Setting up libltdl7:amd64 (2.4.6-2) ...
+Setting up libmtdev1:amd64 (1.1.5-1ubuntu3) ...
+Setting up vim-common (2:8.0.1453-1ubuntu1.13) ...
+Setting up libijs-0.35:amd64 (0.35-13) ...
+Setting up netpbm (2:10.0-15.3build1) ...
+Setting up libdconf1:amd64 (0.26.0-2ubuntu3) ...
+Setting up libxcb-shm0:amd64 (1.13-2~ubuntu18.04) ...
+Setting up libxkbcommon0:amd64 (0.8.2-1~ubuntu18.04.1) ...
+Setting up tabix (1.7-2) ...
+Setting up libgudev-1.0-0:amd64 (1:232-2) ...
+Setting up vim-runtime (2:8.0.1453-1ubuntu1.13) ...
+Setting up libxcb-keysyms1:amd64 (0.4.0-1) ...
+Setting up groff (1.22.3-10) ...
+Setting up aglfn (1.7-3) ...
+Setting up libcolord2:amd64 (1.3.3-2build1) ...
+Setting up libthai-data (0.1.27-2) ...
+Setting up liblua5.3-0:amd64 (5.3.3-1ubuntu0.18.04.1) ...
+Setting up openssh-client (1:7.6p1-4ubuntu0.7) ...
+Setting up hicolor-icon-theme (0.17-2) ...
+Setting up libwmf0.2-7:amd64 (0.2.8.4-12) ...
+Setting up libwayland-cursor0:amd64 (1.16.0-1ubuntu1.1~18.04.4) ...
+Setting up git (1:2.17.1-1ubuntu0.18) ...
+Setting up libwayland-egl1:amd64 (1.16.0-1ubuntu1.1~18.04.4) ...
+Setting up libidn11:amd64 (1.33-2.1ubuntu1.2) ...
+Setting up libmpdec2:amd64 (2.4.2-1ubuntu1) ...
+Setting up fontconfig (2.12.6-0ubuntu2) ...
+Regenerating fonts cache... done.
+Setting up libwayland-server0:amd64 (1.16.0-1ubuntu1.1~18.04.4) ...
+Setting up libwebp6:amd64 (0.6.1-2ubuntu0.18.04.2) ...
+Setting up libxcb-xkb1:amd64 (1.13-2~ubuntu18.04) ...
+Setting up libqt5core5a:amd64 (5.9.5+dfsg-0ubuntu2.6) ...
+Setting up libpython3.6-stdlib:amd64 (3.6.9-1~18.04ubuntu1.12) ...
+Setting up libcairo2:amd64 (1.15.10-2ubuntu0.1) ...
+Setting up libxcb-render-util0:amd64 (0.3.9-1) ...
+Setting up libqt5dbus5:amd64 (5.9.5+dfsg-0ubuntu2.6) ...
+Setting up libqt5network5:amd64 (5.9.5+dfsg-0ubuntu2.6) ...
+Setting up libmagickcore-6.q16-3:amd64 (8:6.9.7.4+dfsg-16ubuntu6.15) ...
+Setting up libwacom2:amd64 (0.29-1) ...
+Setting up libxcb-image0:amd64 (0.4.0-1build1) ...
+Setting up libltdl-dev:amd64 (2.4.6-2) ...
+Setting up libdjvulibre21:amd64 (3.5.27.1-8ubuntu0.4) ...
+Setting up dconf-service (0.26.0-2ubuntu3) ...
+Setting up libgdk-pixbuf2.0-0:amd64 (2.36.11-2) ...
+Setting up libcairo-gobject2:amd64 (1.15.10-2ubuntu0.1) ...
+Setting up libgbm1:amd64 (20.0.8-0ubuntu1~18.04.1) ...
+Setting up libgdk-pixbuf2.0-bin (2.36.11-2) ...
+Setting up libgd3:amd64 (2.2.5-4ubuntu0.5) ...
+Setting up libthai0:amd64 (0.1.27-2) ...
+Setting up libopenexr22:amd64 (2.2.0-11.1ubuntu1.9) ...
+Setting up file (1:5.32-2ubuntu0.4) ...
+Setting up gnuplot-data (5.2.2+dfsg1-2ubuntu1) ...
+Setting up libinput-bin (1.10.4-1ubuntu0.18.04.3) ...
+Setting up libxkbcommon-x11-0:amd64 (0.8.2-1~ubuntu18.04.1) ...
+Setting up libwacom-bin (0.29-1) ...
+Setting up gtk-update-icon-cache (3.22.30-1ubuntu4) ...
+Setting up libpango-1.0-0:amd64 (1.40.14-1ubuntu0.1) ...
+Setting up libmagickwand-6.q16-3:amd64 (8:6.9.7.4+dfsg-16ubuntu6.15) ...
+Setting up libegl-mesa0:amd64 (20.0.8-0ubuntu1~18.04.1) ...
+Setting up libgs9:amd64 (9.26~dfsg+0-0ubuntu0.18.04.18) ...
+Setting up dconf-gsettings-backend:amd64 (0.26.0-2ubuntu3) ...
+Setting up libpython3.6:amd64 (3.6.9-1~18.04ubuntu1.12) ...
+Setting up libtool (2.4.6-2) ...
+Setting up libnotify4:amd64 (0.7.7-3ubuntu0.18.04.1) ...
+Setting up gsettings-desktop-schemas (3.28.0-1ubuntu1) ...
+Setting up libgtk-3-common (3.22.30-1ubuntu4) ...
+Setting up vim (2:8.0.1453-1ubuntu1.13) ...
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vim (vim) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vimdiff (vimdiff) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/rvim (rvim) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/rview (rview) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vi (vi) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/fr/man1/vi.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group vi) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/it/man1/vi.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group vi) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/pl/man1/vi.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group vi) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ru/man1/vi.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group vi) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ja/man1/vi.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group vi) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/vi.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group vi) doesn't exist
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/view (view) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/fr/man1/view.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group view) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/it/man1/view.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group view) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/pl/man1/view.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group view) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ru/man1/view.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group view) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ja/man1/view.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group view) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/view.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group view) doesn't exist
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/ex (ex) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/fr/man1/ex.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group ex) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/it/man1/ex.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group ex) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/pl/man1/ex.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group ex) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ru/man1/ex.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group ex) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ja/man1/ex.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group ex) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/ex.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group ex) doesn't exist
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/editor (editor) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/fr/man1/editor.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group editor) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/it/man1/editor.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group editor) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/pl/man1/editor.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group editor) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ru/man1/editor.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group editor) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ja/man1/editor.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group editor) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/editor.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group editor) doesn't exist
+Setting up libinput10:amd64 (1.10.4-1ubuntu0.18.04.3) ...
+Setting up imagemagick-6.q16 (8:6.9.7.4+dfsg-16ubuntu6.15) ...
+update-alternatives: using /usr/bin/compare-im6.q16 to provide /usr/bin/compare (compare) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/compare.1.gz because associated file /usr/share/man/man1/compare-im6.q16.1.gz (of link group compare) doesn't exist
+update-alternatives: using /usr/bin/compare-im6.q16 to provide /usr/bin/compare-im6 (compare-im6) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/compare-im6.1.gz because associated file /usr/share/man/man1/compare-im6.q16.1.gz (of link group compare-im6) doesn't exist
+update-alternatives: using /usr/bin/animate-im6.q16 to provide /usr/bin/animate (animate) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/animate.1.gz because associated file /usr/share/man/man1/animate-im6.q16.1.gz (of link group animate) doesn't exist
+update-alternatives: using /usr/bin/animate-im6.q16 to provide /usr/bin/animate-im6 (animate-im6) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/animate-im6.1.gz because associated file /usr/share/man/man1/animate-im6.q16.1.gz (of link group animate-im6) doesn't exist
+update-alternatives: using /usr/bin/convert-im6.q16 to provide /usr/bin/convert (convert) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/convert.1.gz because associated file /usr/share/man/man1/convert-im6.q16.1.gz (of link group convert) doesn't exist
+update-alternatives: using /usr/bin/convert-im6.q16 to provide /usr/bin/convert-im6 (convert-im6) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/convert-im6.1.gz because associated file /usr/share/man/man1/convert-im6.q16.1.gz (of link group convert-im6) doesn't exist
+update-alternatives: using /usr/bin/composite-im6.q16 to provide /usr/bin/composite (composite) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/composite.1.gz because associated file /usr/share/man/man1/composite-im6.q16.1.gz (of link group composite) doesn't exist
+update-alternatives: using /usr/bin/composite-im6.q16 to provide /usr/bin/composite-im6 (composite-im6) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/composite-im6.1.gz because associated file /usr/share/man/man1/composite-im6.q16.1.gz (of link group composite-im6) doesn't exist
+update-alternatives: using /usr/bin/conjure-im6.q16 to provide /usr/bin/conjure (conjure) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/conjure.1.gz because associated file /usr/share/man/man1/conjure-im6.q16.1.gz (of link group conjure) doesn't exist
+update-alternatives: using /usr/bin/conjure-im6.q16 to provide /usr/bin/conjure-im6 (conjure-im6) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/conjure-im6.1.gz because associated file /usr/share/man/man1/conjure-im6.q16.1.gz (of link group conjure-im6) doesn't exist
+update-alternatives: using /usr/bin/import-im6.q16 to provide /usr/bin/import (import) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/import.1.gz because associated file /usr/share/man/man1/import-im6.q16.1.gz (of link group import) doesn't exist
+update-alternatives: using /usr/bin/import-im6.q16 to provide /usr/bin/import-im6 (import-im6) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/import-im6.1.gz because associated file /usr/share/man/man1/import-im6.q16.1.gz (of link group import-im6) doesn't exist
+update-alternatives: using /usr/bin/identify-im6.q16 to provide /usr/bin/identify (identify) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/identify.1.gz because associated file /usr/share/man/man1/identify-im6.q16.1.gz (of link group identify) doesn't exist
+update-alternatives: using /usr/bin/identify-im6.q16 to provide /usr/bin/identify-im6 (identify-im6) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/identify-im6.1.gz because associated file /usr/share/man/man1/identify-im6.q16.1.gz (of link group identify-im6) doesn't exist
+update-alternatives: using /usr/bin/stream-im6.q16 to provide /usr/bin/stream (stream) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/stream.1.gz because associated file /usr/share/man/man1/stream-im6.q16.1.gz (of link group stream) doesn't exist
+update-alternatives: using /usr/bin/stream-im6.q16 to provide /usr/bin/stream-im6 (stream-im6) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/stream-im6.1.gz because associated file /usr/share/man/man1/stream-im6.q16.1.gz (of link group stream-im6) doesn't exist
+update-alternatives: using /usr/bin/display-im6.q16 to provide /usr/bin/display (display) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/display.1.gz because associated file /usr/share/man/man1/display-im6.q16.1.gz (of link group display) doesn't exist
+update-alternatives: using /usr/bin/display-im6.q16 to provide /usr/bin/display-im6 (display-im6) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/display-im6.1.gz because associated file /usr/share/man/man1/display-im6.q16.1.gz (of link group display-im6) doesn't exist
+update-alternatives: using /usr/bin/montage-im6.q16 to provide /usr/bin/montage (montage) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/montage.1.gz because associated file /usr/share/man/man1/montage-im6.q16.1.gz (of link group montage) doesn't exist
+update-alternatives: using /usr/bin/montage-im6.q16 to provide /usr/bin/montage-im6 (montage-im6) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/montage-im6.1.gz because associated file /usr/share/man/man1/montage-im6.q16.1.gz (of link group montage-im6) doesn't exist
+update-alternatives: using /usr/bin/mogrify-im6.q16 to provide /usr/bin/mogrify (mogrify) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/mogrify.1.gz because associated file /usr/share/man/man1/mogrify-im6.q16.1.gz (of link group mogrify) doesn't exist
+update-alternatives: using /usr/bin/mogrify-im6.q16 to provide /usr/bin/mogrify-im6 (mogrify-im6) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/mogrify-im6.1.gz because associated file /usr/share/man/man1/mogrify-im6.q16.1.gz (of link group mogrify-im6) doesn't exist
+Setting up ghostscript (9.26~dfsg+0-0ubuntu0.18.04.18) ...
+Setting up libpangoft2-1.0-0:amd64 (1.40.14-1ubuntu0.1) ...
+Setting up libegl1:amd64 (1.0.0-2ubuntu2.3) ...
+Setting up libqt5gui5:amd64 (5.9.5+dfsg-0ubuntu2.6) ...
+Setting up imagemagick (8:6.9.7.4+dfsg-16ubuntu6.15) ...
+Setting up libqt5widgets5:amd64 (5.9.5+dfsg-0ubuntu2.6) ...
+Setting up libpangocairo-1.0-0:amd64 (1.40.14-1ubuntu0.1) ...
+Setting up libqt5printsupport5:amd64 (5.9.5+dfsg-0ubuntu2.6) ...
+Setting up libmagickcore-6.q16-3-extra:amd64 (8:6.9.7.4+dfsg-16ubuntu6.15) ...
+Setting up libqt5svg5:amd64 (5.9.5-0ubuntu1.1) ...
+Setting up librsvg2-2:amd64 (2.40.20-2ubuntu0.2) ...
+Setting up librsvg2-common:amd64 (2.40.20-2ubuntu0.2) ...
+Setting up adwaita-icon-theme (3.28.0-1ubuntu1) ...
+update-alternatives: using /usr/share/icons/Adwaita/cursor.theme to provide /usr/share/icons/default/index.theme (x-cursor-theme) in auto mode
+Setting up libgtk2.0-0:amd64 (2.24.32-1ubuntu1) ...
+Setting up libgail18:amd64 (2.24.32-1ubuntu1) ...
+Setting up libwxgtk3.0-0v5:amd64 (3.0.4+dfsg-3) ...
+Setting up libgail-common:amd64 (2.24.32-1ubuntu1) ...
+Setting up humanity-icon-theme (0.6.15) ...
+Setting up libgtk2.0-bin (2.24.32-1ubuntu1) ...
+Setting up ubuntu-mono (16.10+18.04.20181005-0ubuntu1) ...
+Setting up gnuplot-qt (5.2.2+dfsg1-2ubuntu1) ...
+update-alternatives: using /usr/bin/gnuplot-qt to provide /usr/bin/gnuplot (gnuplot) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/gnuplot.1.gz because associated file /usr/share/man/man1/gnuplot-qt.1.gz (of link group gnuplot) doesn't exist
+Setting up gnuplot (5.2.2+dfsg1-2ubuntu1) ...
+Processing triggers for libc-bin (2.27-3ubuntu1.6) ...
+Processing triggers for libglib2.0-0:amd64 (2.56.4-0ubuntu0.18.04.9) ...
+Setting up glib-networking:amd64 (2.56.0-1ubuntu0.1) ...
+Setting up libsoup2.4-1:amd64 (2.62.1-1ubuntu0.4) ...
+Setting up libsoup-gnome2.4-1:amd64 (2.62.1-1ubuntu0.4) ...
+Setting up librest-0.7-0:amd64 (0.8.0-2) ...
+Setting up libgtk-3-0:amd64 (3.22.30-1ubuntu4) ...
+Setting up libgtk-3-bin (3.22.30-1ubuntu4) ...
+Setting up qt5-gtk-platformtheme:amd64 (5.9.5+dfsg-0ubuntu2.6) ...
+Setting up notification-daemon (3.20.0-3) ...
+Processing triggers for libgdk-pixbuf2.0-0:amd64 (2.36.11-2) ...
+Processing triggers for libc-bin (2.27-3ubuntu1.6) ...
+Removing intermediate container db9cc380b202
+ ---> 47c6dcb20016
+Step 18/38 : RUN mkdir /home/epacts && chmod 777 /home/epacts
+ ---> Running in 40f397c8c507
+Removing intermediate container 40f397c8c507
+ ---> 2419aa90bd1b
+Step 19/38 : RUN ln -s /usr/bin/gcc-5 /usr/local/bin/gcc
+ ---> Running in 1db32adbf69a
+Removing intermediate container 1db32adbf69a
+ ---> 61956e3fd9d7
+Step 20/38 : RUN ln -s /usr/bin/g++-5 /usr/local/bin/g++
+ ---> Running in fc2b4bd92d4a
+Removing intermediate container fc2b4bd92d4a
+ ---> 820efaf7b2b6
+Step 21/38 : ENV PATH=/usr/local/bin:$PATH
+ ---> Running in 2e916ad01945
+Removing intermediate container 2e916ad01945
+ ---> b4c27396303b
+Step 22/38 : WORKDIR /usr
+ ---> Running in 656c97938e0a
+Removing intermediate container 656c97938e0a
+ ---> 87b11f3018c7
+Step 23/38 : WORKDIR /
+ ---> Running in cce0c475b87d
+Removing intermediate container cce0c475b87d
+ ---> 594780ee1300
+Step 24/38 : RUN git clone https://github.com/ClaudioCappadona/EPACTS_SKATOh.git --single-branch --branch SKATOh_test
+ ---> Running in 7753c5fc5aca
+[91mCloning into 'EPACTS_SKATOh'...
+[0mRemoving intermediate container 7753c5fc5aca
+ ---> 88f8cb9c8fa4
+Step 25/38 : WORKDIR /EPACTS_SKATOh
+ ---> Running in 46c546c3e3a7
+Removing intermediate container 46c546c3e3a7
+ ---> e5e6f9c78ba4
+Step 26/38 : RUN autoreconf -vfi
+ ---> Running in c817d14240d1
+[91mautoreconf: Entering directory `.'
+[0m[91mautoreconf: configure.ac: not using Gettext
+[0m[91mautoreconf: running: aclocal --force -I m4 ${ACLOCAL_FLAGS}
+[0m[91mautoreconf: configure.ac: tracing
+[0m[91mautoreconf: running: libtoolize --copy --force
+[0mlibtoolize: putting auxiliary files in '.'.
+libtoolize: copying file './ltmain.sh'
+libtoolize: putting macros in AC_CONFIG_MACRO_DIRS, 'm4'.
+libtoolize: copying file 'm4/libtool.m4'
+libtoolize: copying file 'm4/ltoptions.m4'
+libtoolize: copying file 'm4/ltsugar.m4'
+libtoolize: copying file 'm4/ltversion.m4'
+libtoolize: copying file 'm4/lt~obsolete.m4'
+[91mautoreconf: running: /usr/bin/autoconf --force
+[0m[91mautoreconf: running: /usr/bin/autoheader --force
+[0m[91mautoreconf: running: automake --add-missing --copy --force-missing
+[0m[91mconfigure.ac:6: warning: AM_INIT_AUTOMAKE: two- and three-arguments forms are deprecated.  For more info, see:
+configure.ac:6: http://www.gnu.org/software/automake/manual/automake.html#Modernize-AM_005fINIT_005fAUTOMAKE-invocation
+[0m[91mconfigure.ac:11: installing './compile'
+[0m[91mconfigure.ac:6: installing './missing'
+[0m[91msrc/Makefile.am: installing './depcomp'
+[0m[91mautoreconf: Leaving directory `.'
+[0mRemoving intermediate container c817d14240d1
+ ---> 68e405ef43de
+Step 27/38 : RUN CC="gcc-5" CXX="g++-5" ./configure --prefix /home/epacts
+ ---> Running in 2cb9d89451dc
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /bin/mkdir -p
+checking for gawk... no
+checking for mawk... mawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking how to print strings... printf
+checking for style of include used by make... GNU
+checking for gcc... gcc-5
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc-5 accepts -g... yes
+checking for gcc-5 option to accept ISO C89... none needed
+checking whether gcc-5 understands -c and -o together... yes
+checking dependency style of gcc-5... gcc3
+checking for a sed that does not truncate output... /bin/sed
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for fgrep... /bin/grep -F
+checking for ld used by gcc-5... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 1572864
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for ar... ar
+checking for archiver @FILE support... @
+checking for strip... strip
+checking for ranlib... ranlib
+checking command to parse /usr/bin/nm -B output from gcc-5 object... ok
+checking for sysroot... no
+checking for a working dd... /bin/dd
+checking how to truncate binary pipes... /bin/dd bs=4096 count=1
+checking for mt... no
+checking if : is a manifest tool... no
+checking how to run the C preprocessor... gcc-5 -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc-5 supports -fno-rtti -fno-exceptions... no
+checking for gcc-5 option to produce PIC... -fPIC -DPIC
+checking if gcc-5 PIC flag -fPIC -DPIC works... yes
+checking if gcc-5 static flag -static works... yes
+checking if gcc-5 supports -c -o file.o... yes
+checking if gcc-5 supports -c -o file.o... (cached) yes
+checking whether the gcc-5 linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++-5 accepts -g... yes
+checking dependency style of g++-5... gcc3
+checking how to run the C++ preprocessor... g++-5 -E
+checking for ld used by g++-5... /usr/bin/ld -m elf_x86_64
+checking if the linker (/usr/bin/ld -m elf_x86_64) is GNU ld... yes
+checking whether the g++-5 linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking for g++-5 option to produce PIC... -fPIC -DPIC
+checking if g++-5 PIC flag -fPIC -DPIC works... yes
+checking if g++-5 static flag -static works... yes
+checking if g++-5 supports -c -o file.o... yes
+checking if g++-5 supports -c -o file.o... (cached) yes
+checking whether the g++-5 linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking dynamic linker characteristics... (cached) GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking for gcc... (cached) gcc-5
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc-5 accepts -g... (cached) yes
+checking for gcc-5 option to accept ISO C89... (cached) none needed
+checking whether gcc-5 understands -c and -o together... (cached) yes
+checking dependency style of gcc-5... (cached) gcc3
+checking limits.h usability... yes
+checking limits.h presence... yes
+checking for limits.h... yes
+checking stddef.h usability... yes
+checking stddef.h presence... yes
+checking for stddef.h... yes
+checking for stdint.h... (cached) yes
+checking for stdlib.h... (cached) yes
+checking for string.h... (cached) yes
+checking for unistd.h... (cached) yes
+checking for stdbool.h that conforms to C99... yes
+checking for _Bool... yes
+checking for inline... inline
+checking for int32_t... yes
+checking for int64_t... yes
+checking for C/C++ restrict keyword... __restrict
+checking for size_t... yes
+checking for uint16_t... yes
+checking for uint32_t... yes
+checking for uint64_t... yes
+checking for uint8_t... yes
+checking for ptrdiff_t... yes
+checking for error_at_line... yes
+checking for stdlib.h... (cached) yes
+checking for GNU libc compatible malloc... yes
+checking whether sys/types.h defines makedev... yes
+checking for stdlib.h... (cached) yes
+checking for GNU libc compatible realloc... yes
+checking for working strtod... yes
+checking for floor... no
+checking for gethostname... yes
+checking for memset... yes
+checking for pow... no
+checking for select... yes
+checking for sqrt... no
+checking for strchr... yes
+checking for strstr... yes
+checking for strtol... yes
+checking for gzopen in -lz... yes
+checking for perl... yes
+checking for gs... yes
+checking for Rscript... yes
+checking for R... yes
+checking for grep... yes
+checking for mv... yes
+checking for rm... yes
+checking for make... yes
+checking for cat... yes
+checking for cut... yes
+checking for dirname... yes
+checking for head... yes
+checking for mkdir... yes
+checking for sort... yes
+checking for zcat... yes
+checking for groff... yes
+checking for pfbtops... yes
+checking for gnuplot... yes
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating scripts/Makefile
+config.status: creating data/Makefile
+config.status: creating config.h
+config.status: executing depfiles commands
+config.status: executing libtool commands
+Removing intermediate container 2cb9d89451dc
+ ---> b785ac592fb7
+Step 28/38 : RUN make -j 1
+ ---> Running in 13fe13646a90
+make  all-recursive
+make[1]: Entering directory '/EPACTS_SKATOh'
+Making all in src
+make[2]: Entering directory '/EPACTS_SKATOh/src'
+gcc-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT bedidx.o -MD -MP -MF .deps/bedidx.Tpo -c -o bedidx.o bedidx.c
+mv -f .deps/bedidx.Tpo .deps/bedidx.Po
+gcc-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT bgzf.o -MD -MP -MF .deps/bgzf.Tpo -c -o bgzf.o bgzf.c
+[91mbgzf.c: In function 'bgzf_close':
+bgzf.c:435:11: warning: variable 'count' set but not used [-Wunused-but-set-variable]
+  int ret, count, block_length;
+           ^
+[0m[91mbgzf.c: In function 'bgzf_check_EOF':
+bgzf.c:59:34: warning: ignoring return value of 'fread', declared with attribute warn_unused_result [-Wunused-result]
+ #define _bgzf_read(fp, buf, len) fread(buf, 1, len, fp)
+                                  ^
+bgzf.c:467:2: note: in expansion of macro '_bgzf_read'
+  _bgzf_read(fp->fp, buf, 28);
+  ^
+[0mmv -f .deps/bgzf.Tpo .deps/bgzf.Po
+gcc-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT knetfile.o -MD -MP -MF .deps/knetfile.Tpo -c -o knetfile.o knetfile.c
+[91mIn file included from knetfile.c:49:0:
+knetfile.c: In function 'kftp_send_cmd':
+knetfile.h:9:32: warning: ignoring return value of 'write', declared with attribute warn_unused_result [-Wunused-result]
+ #define netwrite(fd, ptr, len) write(fd, ptr, len)
+                                ^
+knetfile.c:239:2: note: in expansion of macro 'netwrite'
+  netwrite(ftp->ctrl_fd, cmd, strlen(cmd));
+  ^
+[0m[91mknetfile.c: In function 'khttp_connect_file':
+knetfile.h:9:32: warning: ignoring return value of 'write', declared with attribute warn_unused_result [-Wunused-result]
+ #define netwrite(fd, ptr, len) write(fd, ptr, len)
+                                ^
+knetfile.c:418:2: note: in expansion of macro 'netwrite'
+  netwrite(fp->fd, buf, l);
+  ^
+[0mmv -f .deps/knetfile.Tpo .deps/knetfile.Po
+gcc-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT kstring.o -MD -MP -MF .deps/kstring.Tpo -c -o kstring.o kstring.c
+mv -f .deps/kstring.Tpo .deps/kstring.Po
+gcc-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT index.o -MD -MP -MF .deps/index.Tpo -c -o index.o index.c
+mv -f .deps/index.Tpo .deps/index.Po
+rm -f libtabix.a
+ar cru libtabix.a bedidx.o bgzf.o knetfile.o kstring.o index.o 
+[91mar: `u' modifier ignored since `D' is the default (see `U')
+[0mranlib libtabix.a
+g++-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT pEmmax.o -MD -MP -MF .deps/pEmmax.Tpo -c -o pEmmax.o pEmmax.cpp
+mv -f .deps/pEmmax.Tpo .deps/pEmmax.Po
+g++-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT Parameters.o -MD -MP -MF .deps/Parameters.Tpo -c -o Parameters.o Parameters.cpp
+mv -f .deps/Parameters.Tpo .deps/Parameters.Po
+g++-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT Error.o -MD -MP -MF .deps/Error.Tpo -c -o Error.o Error.cpp
+mv -f .deps/Error.Tpo .deps/Error.Po
+g++-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT PhredHelper.o -MD -MP -MF .deps/PhredHelper.Tpo -c -o PhredHelper.o PhredHelper.cpp
+mv -f .deps/PhredHelper.Tpo .deps/PhredHelper.Po
+g++-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT codonHelper.o -MD -MP -MF .deps/codonHelper.Tpo -c -o codonHelper.o codonHelper.cpp
+mv -f .deps/codonHelper.Tpo .deps/codonHelper.Po
+/bin/bash ../libtool  --tag=CXX   --mode=link g++-5  -g -O2   -o pEmmax pEmmax.o Parameters.o Error.o PhredHelper.o codonHelper.o libtabix.a -lz 
+libtool: link: g++-5 -g -O2 -o pEmmax pEmmax.o Parameters.o Error.o PhredHelper.o codonHelper.o  libtabix.a -lz
+g++-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT vcfast.o -MD -MP -MF .deps/vcfast.Tpo -c -o vcfast.o vcfast.cpp
+mv -f .deps/vcfast.Tpo .deps/vcfast.Po
+g++-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT genomePosition.o -MD -MP -MF .deps/genomePosition.Tpo -c -o genomePosition.o genomePosition.cpp
+mv -f .deps/genomePosition.Tpo .deps/genomePosition.Po
+/bin/bash ../libtool  --tag=CXX   --mode=link g++-5  -g -O2   -o vcfast vcfast.o Error.o PhredHelper.o Parameters.o codonHelper.o genomePosition.o libtabix.a -lz 
+libtool: link: g++-5 -g -O2 -o vcfast vcfast.o Error.o PhredHelper.o Parameters.o codonHelper.o genomePosition.o  libtabix.a -lz
+g++-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT chaps.o -MD -MP -MF .deps/chaps.Tpo -c -o chaps.o chaps.cpp
+[91mIn file included from chaps.cpp:7:0:
+sparseHMM.h: In member function 'void sparseHMM::betweenForwardBackward(int)':
+sparseHMM.h:162:7: warning: 'nrmv' may be used uninitialized in this function [-Wmaybe-uninitialized]
+       if ( nrmv > 0 ) {
+       ^
+sparseHMM.h:137:20: note: 'nrmv' was declared here
+       int i, nrnd, nrmv;
+                    ^
+[0mmv -f .deps/chaps.Tpo .deps/chaps.Po
+/bin/bash ../libtool  --tag=CXX   --mode=link g++-5  -g -O2   -o chaps chaps.o Error.o PhredHelper.o Parameters.o libtabix.a -lz 
+libtool: link: g++-5 -g -O2 -o chaps chaps.o Error.o PhredHelper.o Parameters.o  libtabix.a -lz
+g++-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT Anno.o -MD -MP -MF .deps/Anno.Tpo -c -o Anno.o Anno.cpp
+mv -f .deps/Anno.Tpo .deps/Anno.Po
+g++-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT IO.o -MD -MP -MF .deps/IO.Tpo -c -o IO.o IO.cpp
+mv -f .deps/IO.Tpo .deps/IO.Po
+/bin/bash ../libtool  --tag=CXX   --mode=link g++-5  -g -O2   -o anno Anno.o IO.o libtabix.a -lz 
+libtool: link: g++-5 -g -O2 -o anno Anno.o IO.o  libtabix.a -lz
+gcc-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT bgzip.o -MD -MP -MF .deps/bgzip.Tpo -c -o bgzip.o bgzip.c
+[91mbgzip.c: In function 'main':
+bgzip.c:198:4: warning: ignoring return value of 'write', declared with attribute warn_unused_result [-Wunused-result]
+    write(f_dst, buffer, c);
+    ^
+[0m[91mbgzip.c: In function 'write_open':
+bgzip.c:57:4: warning: ignoring return value of 'scanf', declared with attribute warn_unused_result [-Wunused-result]
+    scanf("%c", &c);
+    ^
+[0mmv -f .deps/bgzip.Tpo .deps/bgzip.Po
+/bin/bash ../libtool  --tag=CC   --mode=link gcc-5  -g -O2   -o bgzip bgzip.o bedidx.o bgzf.o knetfile.o kstring.o  -lz 
+libtool: link: gcc-5 -g -O2 -o bgzip bgzip.o bedidx.o bgzf.o knetfile.o kstring.o  -lz
+gcc-5 -DHAVE_CONFIG_H -I. -I..  -Wall -fpic -O2    -g -O2 -MT tabix.o -MD -MP -MF .deps/tabix.Tpo -c -o tabix.o tabix.c
+mv -f .deps/tabix.Tpo .deps/tabix.Po
+/bin/bash ../libtool  --tag=CC   --mode=link gcc-5  -g -O2   -o tabix tabix.o bedidx.o bgzf.o knetfile.o kstring.o index.o  -lz 
+libtool: link: gcc-5 -g -O2 -o tabix tabix.o bedidx.o bgzf.o knetfile.o kstring.o index.o  -lz
+make[2]: Leaving directory '/EPACTS_SKATOh/src'
+Making all in data
+make[2]: Entering directory '/EPACTS_SKATOh/data'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/EPACTS_SKATOh/data'
+Making all in scripts
+make[2]: Entering directory '/EPACTS_SKATOh/scripts'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/EPACTS_SKATOh/scripts'
+make[2]: Entering directory '/EPACTS_SKATOh'
+make[2]: Nothing to be done for 'all-am'.
+make[2]: Leaving directory '/EPACTS_SKATOh'
+make[1]: Leaving directory '/EPACTS_SKATOh'
+Removing intermediate container 13fe13646a90
+ ---> be902608f880
+Step 29/38 : RUN make -j 1 install
+ ---> Running in 49339b859a40
+Making install in src
+make[1]: Entering directory '/EPACTS_SKATOh/src'
+make[2]: Entering directory '/EPACTS_SKATOh/src'
+ /bin/mkdir -p '/home/epacts/bin'
+  /bin/bash ../libtool   --mode=install /usr/bin/install -c pEmmax vcfast chaps anno bgzip tabix '/home/epacts/bin'
+libtool: install: /usr/bin/install -c pEmmax /home/epacts/bin/pEmmax
+libtool: install: /usr/bin/install -c vcfast /home/epacts/bin/vcfast
+libtool: install: /usr/bin/install -c chaps /home/epacts/bin/chaps
+libtool: install: /usr/bin/install -c anno /home/epacts/bin/anno
+libtool: install: /usr/bin/install -c bgzip /home/epacts/bin/bgzip
+libtool: install: /usr/bin/install -c tabix /home/epacts/bin/tabix
+make[2]: Nothing to be done for 'install-data-am'.
+make[2]: Leaving directory '/EPACTS_SKATOh/src'
+make[1]: Leaving directory '/EPACTS_SKATOh/src'
+Making install in data
+make[1]: Entering directory '/EPACTS_SKATOh/data'
+make[2]: Entering directory '/EPACTS_SKATOh/data'
+make[2]: Nothing to be done for 'install-exec-am'.
+ /bin/mkdir -p '/home/epacts/share/EPACTS'
+ /usr/bin/install -c -m 644 epactsSingle.R epactsGroup.R epactsMulti.R mmSKAT_0.95.tar.gz group.b.collapse.R group.b.madsen.R group.q.reverse.R group.skat.R group.b.burden.R group.mmskat.R group.b.wcnt.R group.q.wilcox.R single.b.firth.R single.b.firthCov.R single.b.wald.R single.q.reverse.R single.b.spa2.R single.b.sna0.R single.b.sna2.R single.b.lrt.R single.q.linear.R single.q.wilcox.R single.q.lm.R single.b.score.R single.q.emmaxR.R multi.q.linear.R prologue.ps genetic_map_GRCh37_wgs.txt.gz genetic_map_GRCh37_wgs.txt.gz.tbi GillSansItalic.pfb GillSansMT.pfb hg19_refFlat.txt.gz hg19_refGene.txt.gz hg19_gencodeV7.txt.gz calibri.pfb arial.pfb 1000G_exome_chr20_example_softFiltered.calls.vcf.gz 1000G_exome_chr20_example_softFiltered.calls.vcf.gz.tbi 1000G_dummy_pheno.ped codon.txt '/home/epacts/share/EPACTS'
+ /usr/bin/install -c -m 644 priority.txt epactsR_3.3.2.tar.gz wgEncodeBroadHmmGm12878HMM.bed.gz wgEncodeBroadHmmH1hescHMM.bed.gz.tbi wgEncodeBroadHmmHmecHMM.bed.gz wgEncodeBroadHmmHsmmHMM.bed.gz.tbi wgEncodeBroadHmmK562HMM.bed.gz wgEncodeBroadHmmNhekHMM.bed.gz.tbi wgEncodeBroadHmmGm12878HMM.bed.gz.tbi wgEncodeBroadHmmHepg2HMM.bed.gz wgEncodeBroadHmmHmecHMM.bed.gz.tbi wgEncodeBroadHmmHuvecHMM.bed.gz wgEncodeBroadHmmK562HMM.bed.gz.tbi wgEncodeBroadHmmNhlfHMM.bed.gz wgEncodeBroadHmmH1hescHMM.bed.gz wgEncodeBroadHmmHepg2HMM.bed.gz.tbi wgEncodeBroadHmmHsmmHMM.bed.gz wgEncodeBroadHmmHuvecHMM.bed.gz.tbi wgEncodeBroadHmmNhekHMM.bed.gz wgEncodeBroadHmmNhlfHMM.bed.gz.tbi hg19_gencodeV14.txt.gz '/home/epacts/share/EPACTS'
+make[2]: Leaving directory '/EPACTS_SKATOh/data'
+make[1]: Leaving directory '/EPACTS_SKATOh/data'
+Making install in scripts
+make[1]: Entering directory '/EPACTS_SKATOh/scripts'
+make[2]: Entering directory '/EPACTS_SKATOh/scripts'
+ /bin/mkdir -p '/home/epacts/bin'
+ /usr/bin/install -c epacts epacts-single epacts-anno epacts-cat epacts-group epacts-make-group epacts-make-kin epacts-zoom epacts-multi epacts-cis-extract epacts-download epacts-plot epacts-pca-plot epacts-enrich epstopdf epacts.pm wGetOptions.pm test_run_epacts.sh '/home/epacts/bin'
+make[2]: Nothing to be done for 'install-data-am'.
+make[2]: Leaving directory '/EPACTS_SKATOh/scripts'
+make[1]: Leaving directory '/EPACTS_SKATOh/scripts'
+make[1]: Entering directory '/EPACTS_SKATOh'
+make[2]: Entering directory '/EPACTS_SKATOh'
+make[2]: Nothing to be done for 'install-exec-am'.
+make[2]: Nothing to be done for 'install-data-am'.
+make[2]: Leaving directory '/EPACTS_SKATOh'
+make[1]: Leaving directory '/EPACTS_SKATOh'
+Removing intermediate container 49339b859a40
+ ---> e221607c3e7c
+Step 30/38 : ENV EPACTS_DIR=/home/epacts
+ ---> Running in 97dda7dd3e36
+Removing intermediate container 97dda7dd3e36
+ ---> 3830202b553d
+Step 31/38 : RUN ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.4 /usr/lib/x86_64-linux-gnu/libgfortran.so
+ ---> Running in 562823f2bd67
+Removing intermediate container 562823f2bd67
+ ---> 1ef58322d098
+Step 32/38 : WORKDIR /EPACTS_SKATOh/data
+ ---> Running in ec2c4d5dfb13
+Removing intermediate container ec2c4d5dfb13
+ ---> 58e02c530f24
+Step 33/38 : RUN R CMD INSTALL Rcpp_1.0.10.tar.gz
+ ---> Running in 6ee85a55350f
 [91m* installing to library '/usr/local/lib/R/library'
 [0m[91m* installing *source* package 'Rcpp' ...
 [0m[91m** package 'Rcpp' successfully unpacked and MD5 sums checked
@@ -118,10 +1443,144 @@ g++ -std=gnu++14 -shared -L/usr/local/lib -o Rcpp.so api.o attributes.o barrier.
 [0m[91m** testing if installed package can be loaded from final location
 [0m[91m** testing if installed package keeps a record of temporary installation path
 [0m[91m* DONE (Rcpp)
-[0mRemoving intermediate container f44d7b63b310
- ---> 45cd52b7c01d
-Step 33/37 : RUN R CMD INSTALL RcppEigen_0.3.3.9.3.tar.gz
- ---> Running in 2cc290e4d3da
-[91mWarning: invalid package 'RcppEigen_0.3.3.9.3.tar.gz'
-Error: ERROR: no packages specified
-[0m
+[0mRemoving intermediate container 6ee85a55350f
+ ---> 34df1d513bac
+Step 34/38 : RUN R CMD INSTALL RcppEigen_0.3.3.9.3.tar.gz
+ ---> Running in a55713d8d6a3
+[91m* installing to library '/usr/local/lib/R/library'
+[0m[91m* installing *source* package 'RcppEigen' ...
+[0m[91m** package 'RcppEigen' successfully unpacked and MD5 sums checked
+** using staged installation
+[0m[91m** libs
+[0mg++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG  -I'/usr/local/lib/R/library/Rcpp/include' -I/usr/local/include  -I../inst/include -fpic  -g -O2  -c RcppEigen.cpp -o RcppEigen.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG  -I'/usr/local/lib/R/library/Rcpp/include' -I/usr/local/include  -I../inst/include -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG  -I'/usr/local/lib/R/library/Rcpp/include' -I/usr/local/include  -I../inst/include -fpic  -g -O2  -c fastLm.cpp -o fastLm.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG  -I'/usr/local/lib/R/library/Rcpp/include' -I/usr/local/include   -fpic  -g -O2  -c init.c -o init.o
+g++ -std=gnu++14 -shared -L/usr/local/lib -o RcppEigen.so RcppEigen.o RcppExports.o fastLm.o init.o -L/usr/local/lib/R/lib -lRlapack -L/usr/local/lib/R/lib -lRblas -lgfortran -lm -lquadmath
+[91minstalling to /usr/local/lib/R/library/00LOCK-RcppEigen/00new/RcppEigen/libs
+[0m[91m** R
+[0m[91m** inst
+[0m[91m** byte-compile and prepare package for lazy loading
+[0m[91m** help
+[0m[91m*** installing help indices
+[0m[91m** building package indices
+[0m[91m** installing vignettes
+[0m[91m** testing if installed package can be loaded from temporary location
+[0m[91m** checking absolute paths in shared objects and dynamic libraries
+[0m[91m** testing if installed package can be loaded from final location
+[0m[91m** testing if installed package keeps a record of temporary installation path
+[0m[91m* DONE (RcppEigen)
+[0mRemoving intermediate container a55713d8d6a3
+ ---> 305e5a55cbb2
+Step 35/38 : RUN R CMD INSTALL RSpectra_0.16-1.tar.gz
+ ---> Running in 9b4567ef1f26
+[91m* installing to library '/usr/local/lib/R/library'
+[0m[91m* installing *source* package 'RSpectra' ...
+[0m[91m** package 'RSpectra' successfully unpacked and MD5 sums checked
+** using staged installation
+[0m[91m** libs
+[0mg++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG -DUSE_FC_LEN_T -I../inst/include -I'/usr/local/lib/R/library/Rcpp/include' -I'/usr/local/lib/R/library/RcppEigen/include' -I/usr/local/include   -fpic  -g -O2  -c eigs_gen.cpp -o eigs_gen.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG -DUSE_FC_LEN_T -I../inst/include -I'/usr/local/lib/R/library/Rcpp/include' -I'/usr/local/lib/R/library/RcppEigen/include' -I/usr/local/include   -fpic  -g -O2  -c eigs_sym.cpp -o eigs_sym.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG -DUSE_FC_LEN_T -I../inst/include -I'/usr/local/lib/R/library/Rcpp/include' -I'/usr/local/lib/R/library/RcppEigen/include' -I/usr/local/include   -fpic  -g -O2  -c is_sym.cpp -o is_sym.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG -DUSE_FC_LEN_T -I../inst/include -I'/usr/local/lib/R/library/Rcpp/include' -I'/usr/local/lib/R/library/RcppEigen/include' -I/usr/local/include   -fpic  -g -O2  -c matops.cpp -o matops.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -DUSE_FC_LEN_T -I../inst/include -I'/usr/local/lib/R/library/Rcpp/include' -I'/usr/local/lib/R/library/RcppEigen/include' -I/usr/local/include   -fpic  -g -O2  -c register_routines.c -o register_routines.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG -DUSE_FC_LEN_T -I../inst/include -I'/usr/local/lib/R/library/Rcpp/include' -I'/usr/local/lib/R/library/RcppEigen/include' -I/usr/local/include   -fpic  -g -O2  -c svds.cpp -o svds.o
+g++ -std=gnu++14 -shared -L/usr/local/lib -o RSpectra.so eigs_gen.o eigs_sym.o is_sym.o matops.o register_routines.o svds.o -L/usr/local/lib/R/lib -lRlapack -L/usr/local/lib/R/lib -lRblas -lgfortran -lm -lquadmath
+[91minstalling to /usr/local/lib/R/library/00LOCK-RSpectra/00new/RSpectra/libs
+[0m[91m** R
+[0m[91m** inst
+[0m[91m** byte-compile and prepare package for lazy loading
+[0m[91m** help
+[0m[91m*** installing help indices
+[0m[91m** building package indices
+[0m[91m** installing vignettes
+[0m[91m** testing if installed package can be loaded from temporary location
+[0m[91m** checking absolute paths in shared objects and dynamic libraries
+[0m[91m** testing if installed package can be loaded from final location
+[0m[91m** testing if installed package keeps a record of temporary installation path
+[0m[91m* DONE (RSpectra)
+[0mRemoving intermediate container 9b4567ef1f26
+ ---> e5d37b2e2ec0
+Step 36/38 : RUN R CMD INSTALL SPAtest_3.1.2.tar.gz
+ ---> Running in c4549064aa90
+[91m* installing to library '/usr/local/lib/R/library'
+[0m[91m* installing *source* package 'SPAtest' ...
+[0m[91m** package 'SPAtest' successfully unpacked and MD5 sums checked
+[0m[91m** using staged installation
+[0m[91m** R
+[0m[91m** byte-compile and prepare package for lazy loading
+[0m[91m** help
+[0m[91m*** installing help indices
+[0m[91m** building package indices
+[0m[91m** testing if installed package can be loaded from temporary location
+[0m[91m** testing if installed package can be loaded from final location
+[0m[91m** testing if installed package keeps a record of temporary installation path
+[0m[91m* DONE (SPAtest)
+[0mRemoving intermediate container c4549064aa90
+ ---> acf6834b8cf2
+Step 37/38 : RUN R CMD INSTALL SKAT_2.2.5.tar.gz
+ ---> Running in ca421f2afc96
+[91m* installing to library '/usr/local/lib/R/library'
+[0m[91m* installing *source* package 'SKAT' ...
+[0m[91m** package 'SKAT' successfully unpacked and MD5 sums checked
+** using staged installation
+[0m[91m** libs
+[0mg++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c Binary_ComputeExact.cpp -o Binary_ComputeExact.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c Binary_ComputeExactMC.cpp -o Binary_ComputeExactMC.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c Binary_ComputeExactSKATO.cpp -o Binary_ComputeExactSKATO.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c Binary_HyperGeo.cpp -o Binary_HyperGeo.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c Binary_Permu_SKAT.cpp -o Binary_Permu_SKAT.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c Binary_global.cpp -o Binary_global.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c Binary_resampling.cpp -o Binary_resampling.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c bed_reader.cpp -o bed_reader.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c interface_new.cpp -o interface_new.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c interface_to_R.cpp -o interface_to_R.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c kernel_func.cpp -o kernel_func.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c mwo_reader.cpp -o mwo_reader.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c qfc.cpp -o qfc.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c setid_bim_index.cpp -o setid_bim_index.o
+g++ -std=gnu++14 -shared -L/usr/local/lib -o SKAT.so Binary_ComputeExact.o Binary_ComputeExactMC.o Binary_ComputeExactSKATO.o Binary_HyperGeo.o Binary_Permu_SKAT.o Binary_global.o Binary_resampling.o bed_reader.o interface_new.o interface_to_R.o kernel_func.o mwo_reader.o qfc.o setid_bim_index.o
+[91minstalling to /usr/local/lib/R/library/00LOCK-SKAT/00new/SKAT/libs
+[0m[91m** R
+[0m[91m** data
+[0m[91m** inst
+[0m[91m** byte-compile and prepare package for lazy loading
+[0m[91m** help
+[0m[91m*** installing help indices
+[0m[91m** building package indices
+[0m[91m** installing vignettes
+[0m[91m** testing if installed package can be loaded from temporary location
+[0m[91m** checking absolute paths in shared objects and dynamic libraries
+[0m[91m** testing if installed package can be loaded from final location
+[0m[91m** testing if installed package keeps a record of temporary installation path
+[0m[91m* DONE (SKAT)
+[0mRemoving intermediate container ca421f2afc96
+ ---> 87bc80cb1de7
+Step 38/38 : RUN R CMD INSTALL CompQuadForm_1.4.3.tar.gz
+ ---> Running in d9349fac927d
+[91m* installing to library '/usr/local/lib/R/library'
+[0m[91m* installing *source* package 'CompQuadForm' ...
+[0m[91m** package 'CompQuadForm' successfully unpacked and MD5 sums checked
+[0m[91m** using staged installation
+[0m[91m** libs
+[0mg++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c imhof.cpp -o imhof.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c qfc.cpp -o qfc.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c registerDynamicSymbol.c -o registerDynamicSymbol.o
+g++ -std=gnu++14 -I"/usr/local/lib/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c ruben.cpp -o ruben.o
+g++ -std=gnu++14 -shared -L/usr/local/lib -o CompQuadForm.so imhof.o qfc.o registerDynamicSymbol.o ruben.o
+[91minstalling to /usr/local/lib/R/library/00LOCK-CompQuadForm/00new/CompQuadForm/libs
+[0m[91m** R
+[0m[91m** inst
+[0m[91m** byte-compile and prepare package for lazy loading
+[0m[91m** help
+[0m[91m*** installing help indices
+[0m[91m** building package indices
+[0m[91m** testing if installed package can be loaded from temporary location
+[0m[91m** checking absolute paths in shared objects and dynamic libraries
+[0m[91m** testing if installed package can be loaded from final location
+[0m[91m** testing if installed package keeps a record of temporary installation path
+[0m[91m* DONE (CompQuadForm)
+[0mRemoving intermediate container d9349fac927d
+ ---> 2514cd937755
+Successfully built 2514cd937755
+Successfully tagged compile_r4.2:latest
