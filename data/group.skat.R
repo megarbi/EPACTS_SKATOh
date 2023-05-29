@@ -15,8 +15,8 @@
 ##################################################################
 
 ## check the installation of SKAT package
-if ( !require(mmSKAT,lib.loc=paste(bindir,"/lib/",sep="") ) ) {
-  stop("Cannot find mmSKAT package");
+#if ( !require(mmSKAT,lib.loc=paste(bindir,"/lib/",sep="") ) ) {
+#  stop("Cannot find mmSKAT package");
 #  if ( batch == 0 ) { # install for the first time
 #    install.packages('SKAT_0.77.tar.gz');
 #    if(!require(SKAT)) { stop("Package SKAT is not found") }
@@ -32,8 +32,8 @@ if ( !require(mmSKAT,lib.loc=paste(bindir,"/lib/",sep="") ) ) {
 #    else { stop("Package SKAT is not found after a long wait"); }
 #  }
 }
-
-library(mmSKAT)
+library(SKAT)
+#library(mmSKAT)
 
 ## group.q.skat() : SKAT implementation
 ## KEY FEATURES : 0/1 collapsing variable ~ rare variants
@@ -48,7 +48,8 @@ library(mmSKAT)
 group.skat <- function() {
   #library(SKAT)
   #print(packageDescription("SKAT"))
-  if ( skatOptimal ) {
+  if ( skatOptimal | skatoh ) {
+  #if ( skatOptimal ) {
     cname <- c("STATRHO");
   }
   else {
@@ -75,6 +76,19 @@ group.skat <- function() {
     else {
       obj <- SKAT_Null_Model(pheno~cov-1,out_type="C",n.Resampling=0, type.Resampling="bootstrap", Adjustment=skatAdjust) # Continuous outcome
     }
+    if ( skatoh ) {
+        library("CompQuadForm")
+        objd <- KAT.null(pheno,cov)
+        genos_mod <- t(genos)
+        genos_mod[is.na(genos_mod)] <- 0
+        if ( skatOptimal ) {
+            print("Using SKATOh ...")
+            r <- SKATOh(objd,genos_mod, rho=c((0:5)^2/100,0.5,1))
+        } else {
+            print("Using SKATh ...")
+            r <- SKATh(objd,genos_mod)
+        }
+    }    
     # Default SKAT with linear weighted kernel and weights = beta(MAF,1,25)
     if ( skatOptimal ) {
       if ( skatFlat ) {
