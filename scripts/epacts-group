@@ -266,7 +266,7 @@ if ( $invNorm ) {
     print R "write.table(cbind(n,rn),'$out.phe',row.names=F,col.names=F,quote=F,sep=\"\t\")\n";
     print R "write.table(cbind(n,r),'$out.res',row.names=F,col.names=F,quote=F,sep=\"\t\")\n";
     close R;
-    my $cmd = "$binRscript $out.invNorm.R --vanilla";
+    my $cmd = "/opt/R/R-4.2.0/bin/$binRscript $out.invNorm.R --vanilla";
     if ( $mosixNodes ) { $cmd = &getMosixCmd($cmd,$mosixNodes); }
     &forkExecWait($cmd);
     #print "$cmd\n"; print `$cmd`;
@@ -420,7 +420,7 @@ else {
 	    print R "bindir <- '$epactsdir'\n";
 	    print R "source('epactsGroup.R')\n";
 	    close R;
-	    my $cmd = "$binRscript $op.R --vanilla";
+	    my $cmd = "/opt/R/R-4.2.0/bin/$binRscript $op.R --vanilla";
 	    if ( $mosixNodes ) { $cmd = &getMosixCmd($cmd,$mosixNodes); }
 	    push(@tgts,$tgt);
 	    push(@cmds,$cmd);
