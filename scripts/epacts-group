@@ -34,6 +34,7 @@ my $noplot = "";
 my $recessive = "";
 my $run = -1;
 my $skatOptimal = "";
+my $skatoh = ""; #new mod
 my $skatAdjust = "";
 my $skatFlat = "";
 my $beta = "1,25";
@@ -154,6 +155,10 @@ wGetOptions(
 	      "Run SKAT in optimal mode",
 	      "Run SKAT-O instead of original SKAT",
 	      ],
+    "skato-h",[\$skatoh,
+	      "Run SKATh or SKATOh instead of original SKAT and SKAT-O",
+	      "Follows the modification proposed by Wu et al. 2016 and requires additional packages as here: http://www.biostat.umn.edu/~baolin/research/skat_Rcode.html ",
+	     ],
     "skat-flat",[\$skatFlat,
 		 "Use a flat prior instead of beta(1,25)",
 		 "Use a flat prior, instead of the default prior beta(1,25)",
@@ -403,6 +408,7 @@ else {
 	    print R "betas <- c($betaA,$betaB)\n";
 	    print R "skatFlat <- ".($skatFlat ? "TRUE" : "FALSE")."\n";
 	    print R "skatOptimal <- ".($skatOptimal ? "TRUE" : "FALSE")."\n";
+	    print R "skatoh <- ".($skatoh ? "TRUE" : "FALSE")."\n";#MYMOD
 	    print R "skatAdjust <- ".($skatAdjust ? "TRUE" : "FALSE")."\n";
 	    print R "binaryFlag <- ".($binaryFlag ? "TRUE" : "FALSE")."\n";
 	    print R "setwd('$datadir')\n";
