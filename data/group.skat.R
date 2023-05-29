@@ -33,6 +33,7 @@
 #  }
 #}
 library(SKAT)
+library(SKATR)
 #library(mmSKAT)
 
 ## group.q.skat() : SKAT implementation
