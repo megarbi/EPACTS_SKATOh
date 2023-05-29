@@ -415,7 +415,7 @@ else {
 	    print R "batch <- $i\n";
 	    #print R "if ( !require(epactsR,lib.loc=paste(\"$epactsdir\",\"/lib/\",sep=\"\") ) ) {\n";
 	    #print R "\tstop(\"Cannot find epactsR package\")\n";
-	    print R "}\n";
+	    #print R "}\n";
 	    print R "dyn.load(paste(\"$epactsdir/lib/epactsR/libs/epactsR\",.Platform\$dynlib.ext, sep=\"\"))\n";
 	    print R "bindir <- '$epactsdir'\n";
 	    print R "source('epactsGroup.R')\n";
