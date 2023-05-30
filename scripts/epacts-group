@@ -421,9 +421,9 @@ else {
 	    print R "source('epactsGroup.R')\n";
 	    close R;
 	    if ( $skatoh ) {
-	    my $cmd = "/opt/R/R-4.2.0/bin/$binRscript $op.R --vanilla";
+	    $cmd = "/opt/R/R-4.2.0/bin/$binRscript $op.R --vanilla";
 	    } else {
-	    my $cmd = "$binRscript $op.R --vanilla";
+	    $cmd = "$binRscript $op.R --vanilla";
 	    }
 	    if ( $mosixNodes ) { $cmd = &getMosixCmd($cmd,$mosixNodes); }
 	    push(@tgts,$tgt);
