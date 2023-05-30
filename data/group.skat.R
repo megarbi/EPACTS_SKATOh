@@ -78,6 +78,12 @@ group.skat <- function() {
       obj <- SKAT_Null_Model(pheno~cov-1,out_type="C",n.Resampling=0, type.Resampling="bootstrap", Adjustment=skatAdjust) # Continuous outcome
     }
     if ( skatoh ) {
+        if(sum(rowSums(is.na(cov))>0) >0){
+          stop("presence of NAs in cov")
+        }
+        if(sum(rowSums(is.na(pheno))>0) >0){
+          stop("presence of NAs in pheno")
+        }
         library("CompQuadForm")
         objd <- KAT.null(pheno,cov)
         genos_mod <- t(genos)
