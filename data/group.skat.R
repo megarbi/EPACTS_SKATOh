@@ -78,6 +78,10 @@ group.skat <- function() {
       obj <- SKAT_Null_Model(pheno~cov-1,out_type="C",n.Resampling=0, type.Resampling="bootstrap", Adjustment=skatAdjust) # Continuous outcome
     }
     if ( skatoh ) {
+        print(dim(cov))
+        print(class(tmpcov))
+        print(dim(pheno))
+        print(class(pheno))
         if(sum(rowSums(is.na(cov))>0) >0){
           stop("presence of NAs in cov")
         }
