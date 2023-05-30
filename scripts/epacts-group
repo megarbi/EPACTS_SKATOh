@@ -420,10 +420,9 @@ else {
 	    print R "bindir <- '$epactsdir'\n";
 	    print R "source('epactsGroup.R')\n";
 	    close R;
+	    my $cmd = "$binRscript $op.R --vanilla";
 	    if ( $skatoh ) {
 	    $cmd = "/opt/R/R-4.2.0/bin/$binRscript $op.R --vanilla";
-	    } else {
-	    $cmd = "$binRscript $op.R --vanilla";
 	    }
 	    if ( $mosixNodes ) { $cmd = &getMosixCmd($cmd,$mosixNodes); }
 	    push(@tgts,$tgt);
