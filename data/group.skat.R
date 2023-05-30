@@ -79,7 +79,7 @@ group.skat <- function() {
     }
     if ( skatoh ) {
         print(dim(cov))
-        print(class(tmpcov))
+        print(class(cov))
         print(dim(pheno))
         print(class(pheno))
         if(sum(rowSums(is.na(cov))>0) >0){
