@@ -92,9 +92,9 @@ group.skat <- function() {
             print("Using SKATh ...")
             r <- SKATh(objd,genos_mod)
         }
-    }    
+    }
     # Default SKAT with linear weighted kernel and weights = beta(MAF,1,25)
-    if ( skatOptimal ) {
+    if ( skatOptimal &! skatoh) {
       if ( skatFlat ) {
         if ( skatAdjust ) {
           r <- SKAT(t(genos),obj,kernel="linear",method="optimal.adj",impute.method="fixed")
