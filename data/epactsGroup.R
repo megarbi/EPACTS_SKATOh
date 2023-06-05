@@ -71,6 +71,7 @@ for(i in 1:nr) {
     maf.collapse <- NA
   }
   # MY MOD
+  print(dim(genos))
   sum.MAC <- sum(rowSums(genos>0, na.rm = TRUE), na.rm = TRUE)
   cases.MAC <- sum(rowSums(genos[pheno==1]>0, na.rm = TRUE), na.rm = TRUE)
   controls.MAC <- sum(rowSums(genos[pheno==0]>0, na.rm = TRUE), na.rm = TRUE)
