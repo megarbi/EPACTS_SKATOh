@@ -73,9 +73,9 @@ for(i in 1:nr) {
   # MY MOD
   print(dim(genos))
   print(class(genos))
-  sum.MAC <- sum(rowSums(genos>0, na.rm = TRUE), na.rm = TRUE)
-  cases.MAC <- sum(rowSums(genos[pheno==1]>0, na.rm = TRUE), na.rm = TRUE)
-  controls.MAC <- sum(rowSums(genos[pheno==0]>0, na.rm = TRUE), na.rm = TRUE)
+  sum.MAC <- sum(rowSums(as.data.frame(genos)>0, na.rm = TRUE), na.rm = TRUE)
+  cases.MAC <- sum(rowSums(as.data.frame(genos)[pheno==1]>0, na.rm = TRUE), na.rm = TRUE)
+  controls.MAC <- sum(rowSums(as.data.frame(genos)[pheno==0]>0, na.rm = TRUE), na.rm = TRUE)
   #print(genos)
   #print(rowSums(genos,na.rm=T))
   r <- func()
