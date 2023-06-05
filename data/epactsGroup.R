@@ -70,16 +70,24 @@ for(i in 1:nr) {
     nona.collapse <- NA
     maf.collapse <- NA
   }
-
+  # MY MOD
+  sum.MAC <- sum(rowSums(genos>0, na.rm = TRUE), na.rm = TRUE)
+  cases.MAC <- sum(rowSums(genos[pheno==1]>0, na.rm = TRUE), na.rm = TRUE)
+  controls.MAC <- sum(rowSums(genos[pheno==0]>0, na.rm = TRUE), na.rm = TRUE)
   #print(genos)
   #print(rowSums(genos,na.rm=T))
   r <- func()
   if ( i == 1 ) {
-    out <- matrix(NA,nr,length(r$cname)+6)
-    colnames(out) <- c("NS","FRAC_WITH_RARE","NUM_ALL_VARS","NUM_PASS_VARS","NUM_SING_VARS","PVALUE",r$cname)
+    #out <- matrix(NA,nr,length(r$cname)+6)
+    out <- matrix(NA,nr,length(r$cname)+6+3) #MY MOD
+    #colnames(out) <- c("NS","FRAC_WITH_RARE","NUM_ALL_VARS","NUM_PASS_VARS","NUM_SING_VARS","PVALUE",r$cname)
+    #MY MOD
+    colnames(out) <- c("NS","FRAC_WITH_RARE","NUM_ALL_VARS","NUM_PASS_VARS","NUM_SING_VARS","PVALUE",r$cname, "MAC", "MAC_CASES", "MAC_CONTROLS")
   }
   #print(r)
-  out[i,] <- c(nona.collapse,maf.collapse,nrow(G),nrow(genos),sum(AC==1),r$p,r$add)
+  #out[i,] <- c(nona.collapse,maf.collapse,nrow(G),nrow(genos),sum(AC==1),r$p,r$add)
+  #MY MOD
+  out[i,] <- c(nona.collapse,maf.collapse,nrow(G),nrow(genos),sum(AC==1),r$p,r$add, sum.MAC, cases.MAC, controls.MAC)
 }
 rownames(out) <- paste(regions,gnames,sep="_")
 print(warnings())
