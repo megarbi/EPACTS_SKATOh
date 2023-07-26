@@ -79,3 +79,4 @@ if (class(p.value) == "try-error") {
 }
 
 min(p.value, Pmin * K)
+}
