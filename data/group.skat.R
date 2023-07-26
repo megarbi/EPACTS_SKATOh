@@ -82,6 +82,7 @@ group.skat <- function() {
           stop("presence of NAs in cov")
         }
         library("CompQuadForm")
+        source("/usr/local/share/EPACTS/SKATOh_verbose.R")
         objd <- KAT.null(pheno,cov)
         genos_mod <- t(genos)
         genos_mod[is.na(genos_mod)] <- 0
