@@ -1,46 +1,19 @@
-# EPACTS - Efficient and Parallelizable Association Container Toolbox
+# EPACTS and with SKATOh
 
-### What is EPACTS?
+This is a fork of the original EPACTS software (https://github.com/statgen/EPACTS).
+The fork contains different bug fixs, specifically regarding the statistical analysis of collapsed variants present on different chromosomes.
+Additionally, this fork includes an improved SKAT statistical test, as proposed in:
+Wu,B., Guan,W., Pankow,J.S. (2016).On efficient and accurate calculation of significance p-values for sequence kernel association test of variant set. AHG, 80(2), 123-135.
+The code implemented has been gathered from the article's method repository: https://github.com/baolinwu/SKATR.
+The new statistical test is implemented as an option (--skatoh).
 
-EPACTS is a versatile software pipeline to perform various statistical tests for identifying genome-wide association from sequence data through a user-friendly interface, both to scientific analysts and to method developer.s
+Finally, some additional output metrics have been added, such as total minor allele content count (MAC) and separate MAC for cases and controls (only available for binary phenotypes).
 
-### Downloading and Installing EPACTS
+---------------------------------------------------------------------
 
-Prerequisite Packages
-- zlib
-- ghostscript
-- R-studio
-- groff
-- gnuplot
-- automake  
-
-Installing these packages on Centos:
-<pre>
-$ sudo yum install epel-release
-$ sudo yum update
-$ sudo yum install zlib ghoshcript R groff gnuplot automake -y
-</pre>
-
-Initialize the autoreconf program:
-<pre>
-$ autoreconf -f -i
-</pre>
-
-You can clone the current snapshot of this repository to install as well
-
-<pre>
-$ git clone https://github.com/statgen/EPACTS.git
-$ cd EPACTS
-$ ./configure --prefix [/path/to/install]
-$ make
-$ make install
-</pre>
-
-### EPACTS Documentation
+## Original EPACTS Documentation
 
 The latest version of documentation of EPACTS can be found at
 http://genome.sph.umich.edu/wiki/EPACTS
 
-### Feedbacks
 
-Feel free to contact Hyun Min Kang (hmkang@umich.edu) or joint EPACTS Google group (http://groups.google.com/group/epacts) to ask questions about EPACTS
