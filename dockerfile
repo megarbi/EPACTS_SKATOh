@@ -30,7 +30,7 @@ RUN ln -s /usr/bin/g++-5 /usr/local/bin/g++
 ENV PATH=/usr/local/bin:$PATH
 
 #RUN git clone https://github.com/statgen/EPACTS.git
-#RUN git clone https://github.com/ClaudioCappadona/EPACTS_SKATOh.git
+#RUN git clone https://github.com/megarbi/EPACTS_SKATOh.git
 
 #RUN cp -r ./src usr/src && cp -r ./data usr/data /usr/local/share/EPACTS && cp -r ./scripts usr/local/bin
 
