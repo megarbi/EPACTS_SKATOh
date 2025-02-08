@@ -12,6 +12,10 @@ The new statistical test is implemented as an option (--skatoh).
 
 Finally, some additional output metrics have been added, such as total minor allele content count (MAC) and separate MAC for cases and controls (only available for binary phenotypes).
 
+## How to install
+
+A dockerfile can be found in the repository to install EPACTS_SKATOh.
+
 ---------------------------------------------------------------------
 
 ## Original EPACTS Documentation
