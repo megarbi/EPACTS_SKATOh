@@ -1,3 +1,10 @@
+# EPACTS SKATOh
+
+This repository is a fork of the original statgen:epacts repository.
+It contains a custom and improved version of EPACTS, which uses SKAT-O: an Optimized Sequence Kernel Association Test (Wu, B., Weihua, G. & Pankow, J. S. SKATOh; https://github.com/baolinwu/SKATR).
+Additional improvements includes the addition of MAC for cases and controls samples in the output.
+ ------------------------------------------------------------------------------
+
 # EPACTS - Efficient and Parallelizable Association Container Toolbox
 
 ### What is EPACTS?
